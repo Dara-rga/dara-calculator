@@ -3,15 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#101713">
+  <meta name="theme-color" content="#10233f" id="themeColor">
   <title>កម្មវិធីគណនាតម្លៃ និងការលក់ | វ៉ន ដារ៉ា</title>
-  <link rel="stylesheet" href="styles.css?v=apps-tab">
+  <link rel="stylesheet" href="styles.css?v=all-features-2026-11">
 </head>
 <body>
   <section class="intro" id="intro" aria-label="ស្វាគមន៍" data-i18n-aria-label="welcome">
     <div class="intro-content">
-      <span class="dragon-mark" aria-hidden="true">🐉</span>
-      <h1 id="introName">វ៉ន ដារ៉ា</h1>
+      <h1 id="introWelcome">សូមស្វាគមន៍មកកាន់ Dragon Calculator!</h1>
       <p data-i18n="introCredit">អ្នកបង្កើត · Dragon Calculator</p>
       <button class="skip-intro" id="skipIntro" type="button" data-i18n="skipIntro">ចូលប្រើម៉ាស៊ីនគិតលេខ</button>
     </div>
@@ -21,44 +20,43 @@
     <header class="brand">
       <span class="brand-name">
         <span class="brand-icon" aria-hidden="true">🐉</span>
-        <span class="brand-copy"><strong id="brandName">វ៉ន ដារ៉ា</strong><small data-i18n="brandTagline">ភាពអាចទៅរួច</small></span>
+        <span class="brand-copy">
+          <strong>DRAGON CALCULATOR</strong>
+          <small id="brandName">វ៉ន ដារ៉ា</small>
+          <small class="brand-tagline" data-i18n="brandTagline">ភាពអាចទៅរួច</small>
+        </span>
       </span>
-      <button class="about-button" id="aboutButton" type="button" aria-haspopup="dialog">
-        <span class="info-icon" aria-hidden="true">i</span>
-        <span data-i18n="aboutButton">អំពីកម្មវិធី</span>
-      </button>
     </header>
 
-    <div class="workspace-heading">
-      <div class="workspace-copy">
-        <span class="eyebrow" data-i18n="workspaceEyebrow">ផ្ទាំងគ្រប់គ្រងសម្រាប់ការលក់</span>
-        <h1 data-i18n="workspaceTitle">ឧបករណ៍គណនាសម្រាប់អាជីវកម្ម</h1>
-        <p data-i18n="workspaceDescription">គណនាតម្លៃលក់ ការបញ្ចុះ និងលទ្ធផលប្រចាំថ្ងៃរបស់អ្នក</p>
+    <div class="function-toolbar">
+      <div class="tool-tabs" role="tablist" aria-label="ប្រភេទមុខងារ" data-i18n-aria-label="toolTabList">
+        <button class="tool-tab active" id="discountTab" type="button" role="tab" aria-selected="true" aria-controls="discountPanel">
+          <span class="tab-icon" aria-hidden="true">％</span>
+          <span class="tab-copy"><span data-i18n="discountTab">បញ្ចុះតម្លៃ</span><small data-i18n="discountTabNote">Discount price</small></span>
+        </button>
+        <button class="tool-tab" id="targetTab" type="button" role="tab" aria-selected="false" aria-controls="targetPanel">
+          <span class="tab-icon" aria-hidden="true">◎</span>
+          <span class="tab-copy"><span data-i18n="targetTab">គោលដៅលក់</span><small data-i18n="targetTabNote">Sales target</small></span>
+        </button>
+        <button class="tool-tab" id="profitTab" type="button" role="tab" aria-selected="false" aria-controls="profitPanel">
+          <span class="tab-icon" aria-hidden="true">↗</span>
+          <span class="tab-copy"><span data-i18n="profitTab">ចំណេញ/ខាត</span><small data-i18n="profitTabNote">Profit &amp; loss</small></span>
+        </button>
+        <button class="tool-tab" id="appsTab" type="button" role="tab" aria-selected="false" aria-controls="appsPanel">
+          <span class="tab-icon" aria-hidden="true">▦</span>
+          <span class="tab-copy"><span data-i18n="appsTab">កម្មវិធីផ្សេងៗ</span><small data-i18n="appsTabNote">Other apps</small></span>
+        </button>
       </div>
-      <div class="language-switch" role="group" aria-label="ជ្រើសរើសភាសា" data-i18n-aria-label="languageSelect">
-        <button class="language-button active" type="button" data-language="km" aria-pressed="true">ខ្មែរ</button>
-        <button class="language-button" type="button" data-language="en" aria-pressed="false">English</button>
-        <button class="language-button" type="button" data-language="zh" aria-pressed="false">中文</button>
+      <div class="brand-actions">
+        <button class="about-button" id="settingsButton" type="button" aria-haspopup="dialog" aria-controls="settingsDialog">
+          <span class="info-icon" aria-hidden="true">⚙</span>
+          <span data-i18n="settingsButton">ការកំណត់</span>
+        </button>
+        <button class="about-button" id="aboutButton" type="button" aria-haspopup="dialog">
+          <span class="info-icon" aria-hidden="true">i</span>
+          <span data-i18n="aboutButton">អំពីកម្មវិធី</span>
+        </button>
       </div>
-    </div>
-
-    <div class="tool-tabs" role="tablist" aria-label="ប្រភេទមុខងារ" data-i18n-aria-label="toolTabList">
-      <button class="tool-tab active" id="discountTab" type="button" role="tab" aria-selected="true" aria-controls="discountPanel">
-        <span class="tab-icon" aria-hidden="true">％</span>
-        <span class="tab-copy"><span data-i18n="discountTab">បញ្ចុះតម្លៃ</span><small data-i18n="discountTabNote">Discount price</small></span>
-      </button>
-      <button class="tool-tab" id="targetTab" type="button" role="tab" aria-selected="false" aria-controls="targetPanel">
-        <span class="tab-icon" aria-hidden="true">◎</span>
-        <span class="tab-copy"><span data-i18n="targetTab">គោលដៅលក់</span><small data-i18n="targetTabNote">Sales target</small></span>
-      </button>
-      <button class="tool-tab" id="profitTab" type="button" role="tab" aria-selected="false" aria-controls="profitPanel">
-        <span class="tab-icon" aria-hidden="true">↗</span>
-        <span class="tab-copy"><span data-i18n="profitTab">ចំណេញ/ខាត</span><small data-i18n="profitTabNote">Profit &amp; loss</small></span>
-      </button>
-      <button class="tool-tab" id="appsTab" type="button" role="tab" aria-selected="false" aria-controls="appsPanel">
-        <span class="tab-icon" aria-hidden="true">▦</span>
-        <span class="tab-copy"><span data-i18n="appsTab">កម្មវិធីផ្សេងៗ</span><small data-i18n="appsTabNote">Other apps</small></span>
-      </button>
     </div>
 
     <section class="tool-panel" id="discountPanel" role="tabpanel" aria-labelledby="discountTab">
@@ -161,25 +159,87 @@
       <h2 data-i18n="appsHeading">កម្មវិធីផ្សេងៗ</h2>
       <p class="section-description" data-i18n="appsMessage">សូមរងចាំ ការUpdate</p>
     </section>
+
+    <footer class="site-footer">
+      <span data-i18n="copyrightNotice">© 2026 វ៉ន ដារ៉ា · Dragon Calculator</span>
+      <span class="site-version">
+        <span data-i18n="websiteVersionLabel">កំណែគេហទំព័រ</span>
+        <strong>1.00.00</strong>
+      </span>
+    </footer>
   </main>
 
   <dialog class="about-dialog" id="aboutDialog" aria-labelledby="aboutTitle">
     <header class="about-header">
       <div>
-        <span class="eyebrow" data-i18n="aboutEyebrow">អំពីកម្មវិធីនេះ</span>
-        <h2 id="aboutTitle" data-i18n="aboutTitle">អំពីកម្មវិធី</h2>
+        <span class="eyebrow" data-i18n="aboutEyebrow">អំពីខ្ញុំ</span>
+        <h2 id="aboutTitle" data-i18n="aboutTitle">អំពីខ្ញុំ និងគោលបំណងនៃការបង្កើតគេហទំព័រនេះ</h2>
       </div>
       <button class="dialog-close" id="closeAbout" type="button" aria-label="បិទ" data-i18n-aria-label="close">×</button>
     </header>
     <div class="about-content">
-      <p data-i18n="aboutParagraph1">ខ្ញុំបាទឈ្មោះ វ៉ន ដារ៉ា មិនមែនជាអ្នកជំនាញផ្នែក IT ឬជាអ្នកអភិវឌ្ឍន៍គេហទំព័រអាជីពនោះទេ។ គេហទំព័រតូចមួយនេះ ត្រូវបានបង្កើតឡើងដោយផ្អែកលើចំណង់ចំណូលចិត្ត ការចង់ចេះចង់ដឹង និងបំណងប្រាថ្នាចង់ស្វែងយល់អ្វីថ្មីៗរបស់ខ្ញុំប៉ុណ្ណោះ។</p>
+      <p>
+        <span data-i18n="aboutGreetingPrefix">សួស្តី! ខ្ញុំបាទឈ្មោះ</span>
+        <strong data-i18n="aboutGreetingName">វ៉ន ដារ៉ា (Vorn Dara)</strong>
+        <span data-i18n="aboutGreetingSuffix">។</span>
+      </p>
+      <p data-i18n="aboutParagraph1">ខ្ញុំមិនមែនជាអ្នកជំនាញផ្នែក IT ឬជាអ្នកអភិវឌ្ឍន៍គេហទំព័រអាជីពនោះទេ។ គេហទំព័រតូចមួយនេះ ត្រូវបានបង្កើតឡើងដោយផ្អែកលើចំណង់ចំណូលចិត្ត ការចង់ចេះចង់ដឹង និងបំណងប្រាថ្នាចង់ស្វែងយល់អ្វីថ្មីៗរបស់ខ្ញុំប៉ុណ្ណោះ។</p>
       <p data-i18n="aboutParagraph2">ខ្ញុំជឿថា ការរៀនសូត្រមិនចាំបាច់ចាប់ផ្ដើមពីភាពជាអ្នកជំនាញនោះទេ ប៉ុន្តែអាចចាប់ផ្ដើមពីការចង់ដឹង ការហ៊ានសាកល្បង និងការមិនបោះបង់នៅពេលជួបបញ្ហា។</p>
-      <p data-i18n="aboutParagraph3">ទោះបីជាគេហទំព័រនេះមិនទាន់ល្អឥតខ្ចោះក៏ដោយ ក៏វាជាស្នាដៃតូចមួយដែលកើតចេញពីការខិតខំប្រឹងប្រែង និងការរៀនសូត្ររបស់ខ្ញុំផ្ទាល់។</p>
-      <p data-i18n="aboutParagraph4">សូមអរគុណចំពោះអ្នកដែលបានចំណាយពេលចូលមកទស្សនា និងគាំទ្រស្នាដៃតូចមួយនេះ។</p>
-      <p class="about-signature"><strong data-i18n="aboutSignature">ដោយក្តីគោរព និងអរគុណពីខ្ញុំបាទ វ៉ន ដារ៉ា។</strong></p>
+      <p data-i18n="aboutParagraph3">ខ្ញុំមិនខ្លាចក្នុងការចាប់ផ្ដើមពីចំណុចសូន្យនោះទេ ព្រោះខ្ញុំជឿថា អ្នកជំនាញគ្រប់រូបក៏ធ្លាប់ជាអ្នកចាប់ផ្ដើមដំបូងដូចគ្នា។ អ្វីដែលសំខាន់ គឺការបន្តរៀន បន្តអភិវឌ្ឍ និងធ្វើឱ្យខ្លួនឯងកាន់តែប្រសើរឡើងជារៀងរាល់ថ្ងៃ។</p>
+      <h3 data-i18n="aboutPurposeHeading">គោលបំណងនៃគេហទំព័រនេះ</h3>
+      <p data-i18n="aboutPurpose1">គេហទំព័រនេះមិនមែនបង្កើតឡើងដើម្បីបង្ហាញថាខ្ញុំចេះអ្វីៗគ្រប់យ៉ាងនោះទេ ប៉ុន្តែវាជាកន្លែងសម្រាប់សាកល្បង បង្កើត ស្វែងយល់ និងប្រមូលបទពិសោធន៍ថ្មីៗ។</p>
+      <p data-i18n="aboutPurpose2">ខ្ញុំមានបំណងប្រើប្រាស់ចំណេះដឹងដែលបានរៀន ដើម្បីបង្កើតឧបករណ៍តូចៗ កម្មវិធី និងគេហទំព័រផ្សេងៗ ដែលអាចជួយសម្រួលដល់ការងារ និងជីវិតប្រចាំថ្ងៃ។</p>
+      <p data-i18n="aboutPurpose3">ទោះបីជាគេហទំព័រនេះមិនទាន់ល្អឥតខ្ចោះក៏ដោយ ក៏វាជាស្នាដៃតូចមួយដែលកើតចេញពីការខិតខំប្រឹងប្រែង ការសាកល្បង និងការរៀនសូត្ររបស់ខ្ញុំផ្ទាល់។</p>
+      <h3 data-i18n="aboutJourneyHeading">ដំណើរនៃការរៀនសូត្រ (My Journey)</h3>
+      <p data-i18n="aboutJourney1">ខ្ញុំសង្ឃឹមថា នៅថ្ងៃអនាគត គេហទំព័រនេះនឹងក្លាយជាកន្លែងមួយដែលអាចបង្ហាញពីការរីកចម្រើនរបស់ខ្ញុំ តាមរយៈស្នាដៃថ្មីៗ និងបទពិសោធន៍ដែលខ្ញុំទទួលបាន។</p>
+      <p data-i18n="aboutJourney2">រាល់កំហុសគឺជាមេរៀន រាល់បញ្ហាគឺជាបទពិសោធន៍ ហើយរាល់ការចាប់ផ្ដើមថ្មី គឺជាឱកាសមួយសម្រាប់ការរីកចម្រើន។</p>
+      <h3 data-i18n="aboutBeliefsHeading">ពាក្យដែលខ្ញុំតែងតែជឿជាក់</h3>
+      <blockquote class="about-quote">
+        <p><strong data-i18n="aboutQuote">«កុំរង់ចាំរហូតដល់ខ្លួនឯងពូកែ ទើបចាប់ផ្ដើមធ្វើអ្វីមួយ។ ចូរហ៊ានចាប់ផ្ដើមពីអ្វីដែលអ្នកមាន ហើយរៀនឱ្យកាន់តែពូកែតាមរយៈអ្វីដែលអ្នកបានធ្វើ»។</strong></p>
+      </blockquote>
+      <p data-i18n="aboutBelief">ខ្ញុំជឿថា យើងមិនចាំបាច់ប្រកួតប្រជែងជាមួយអ្នកដទៃគ្រប់ពេលនោះទេ។ គ្រាន់តែធ្វើឱ្យខ្លួនឯងនៅថ្ងៃនេះ ប្រសើរជាងខ្លួនឯងកាលពីម្សិលមិញ ក៏ជាការរីកចម្រើនដ៏មានតម្លៃមួយដែរ។</p>
+      <p data-i18n="aboutThanks">ជាចុងក្រោយ ខ្ញុំសូមអរគុណយ៉ាងជ្រាលជ្រៅចំពោះអ្នកដែលបានចំណាយពេលចូលមកទស្សនា និងគាំទ្រស្នាដៃតូចមួយនេះ។ ការចូលទស្សនារបស់អ្នក គឺជាកម្លាំងចិត្តមួយដែលជំរុញឱ្យខ្ញុំបន្តរៀនសូត្រ និងបង្កើតអ្វីថ្មីៗបន្ថែមទៀត។</p>
+      <p class="about-thanks"><strong data-i18n="aboutThanksEmphasis">សូមអរគុណពីចិត្ត!</strong></p>
+      <p class="about-signature">
+        <span data-i18n="aboutSignatureClosing">ដោយក្តីគោរព និងអរគុណពីខ្ញុំបាទ</span>
+        <strong data-i18n="aboutSignatureName">វ៉ន ដារ៉ា (Vorn Dara)</strong>
+      </p>
     </div>
   </dialog>
 
-  <script src="script.js?v=apps-tab" defer></script>
+  <dialog class="about-dialog settings-dialog" id="settingsDialog" aria-labelledby="settingsTitle">
+    <header class="about-header">
+      <div>
+        <span class="eyebrow" data-i18n="settingsEyebrow">ការកំណត់</span>
+        <h2 id="settingsTitle" data-i18n="settingsTitle">ការកំណត់</h2>
+      </div>
+      <button class="dialog-close" id="closeSettings" type="button" aria-label="បិទ" data-i18n-aria-label="close">×</button>
+    </header>
+    <div class="settings-content">
+      <div class="settings-option">
+        <div class="settings-copy">
+          <strong data-i18n="themeSettingLabel">រូបរាង</strong>
+          <small data-i18n="themeSettingDescription">ប្តូររវាងរបៀបភ្លឺ និងរបៀបងងឹត</small>
+        </div>
+        <button class="theme-button" id="themeButton" type="button" aria-pressed="false">
+          <span class="theme-icon" id="themeIcon" aria-hidden="true">☾</span>
+          <span id="themeButtonLabel">របៀបងងឹត</span>
+        </button>
+      </div>
+      <div class="settings-option">
+        <div class="settings-copy">
+          <strong data-i18n="languageSettingLabel">ភាសា</strong>
+          <small data-i18n="languageSettingDescription">ជ្រើសរើសភាសាដែលប្រើក្នុងកម្មវិធី</small>
+        </div>
+        <div class="language-switch" role="group" aria-label="ជ្រើសរើសភាសា" data-i18n-aria-label="languageSelect">
+          <button class="language-button active" type="button" data-language="km" aria-pressed="true">ខ្មែរ</button>
+          <button class="language-button" type="button" data-language="en" aria-pressed="false">English</button>
+          <button class="language-button" type="button" data-language="zh" aria-pressed="false">中文</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="script.js?v=all-features-2026-11" defer></script>
 </body>
 </html>
