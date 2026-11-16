@@ -684,3 +684,32 @@
       .tab-copy { justify-items: start; }
       .tab-copy small { display: block; }
     }
+
+
+#discountPanel {
+        border-color: rgba(183, 230, 138, 0.24);
+        background:
+                  radial-gradient(ellipse at top right, rgba(117, 169, 74, 0.2), transparent 58%),
+                  linear-gradient(145deg, rgba(24, 43, 31, 0.96), rgba(13, 25, 21, 0.96));
+}
+
+#targetPanel {
+        border-color: rgba(104, 190, 211, 0.26);
+        background:
+                  radial-gradient(ellipse at top right, rgba(55, 145, 171, 0.22), transparent 58%),
+                  linear-gradient(145deg, rgba(20, 42, 52, 0.96), rgba(13, 25, 31, 0.96));
+}
+
+#profitPanel {
+        border-color: rgba(232, 153, 125, 0.26);
+        background:
+                  radial-gradient(ellipse at top right, rgba(176, 93, 82, 0.2), transparent 58%),
+                  linear-gradient(145deg, rgba(49, 34, 36, 0.96), rgba(28, 22, 27, 0.96));
+}
+
+#appsPanel {
+        border-color: rgba(174, 151, 232, 0.26);
+        background:
+                  radial-gradient(ellipse at top right, rgba(117, 91, 171, 0.22), transparent 58%),
+                  linear-gradient(145deg, rgba(39, 34, 55, 0.96), rgba(23, 22, 35, 0.96));
+}
