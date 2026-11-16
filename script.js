@@ -6,9 +6,11 @@ const languageButtons = document.querySelectorAll(".language-button");
 const discountTab = document.getElementById("discountTab");
 const targetTab = document.getElementById("targetTab");
 const profitTab = document.getElementById("profitTab");
+const appsTab = document.getElementById("appsTab");
 const discountPanel = document.getElementById("discountPanel");
 const targetPanel = document.getElementById("targetPanel");
 const profitPanel = document.getElementById("profitPanel");
+const appsPanel = document.getElementById("appsPanel");
 const originalPrice = document.getElementById("originalPrice");
 const discountRate = document.getElementById("discountRate");
 const discountedPrice = document.getElementById("discountedPrice");
@@ -61,6 +63,10 @@ const translations = {
     targetTabNote: "Sales target",
     profitTab: "ចំណេញ/ខាត",
     profitTabNote: "Profit & loss",
+    appsTab: "កម្មវិធីផ្សេងៗ",
+    appsTabNote: "កំពុងអភិវឌ្ឍ",
+    appsHeading: "កម្មវិធីផ្សេងៗ",
+    appsMessage: "សូមរងចាំ ការUpdate",
     discountHeading: "គណនាតម្លៃក្រោយបញ្ចុះ",
     discountDescription: "បញ្ចូលតម្លៃដើម និងភាគរយបញ្ចុះតម្លៃ",
     originalPrice: "តម្លៃដើម ($)",
@@ -127,6 +133,10 @@ const translations = {
     targetTabNote: "Target progress",
     profitTab: "Profit / loss",
     profitTabNote: "Profit & loss",
+    appsTab: "Other apps",
+    appsTabNote: "Coming soon",
+    appsHeading: "Other apps",
+    appsMessage: "Please wait for the update.",
     discountHeading: "Discounted price",
     discountDescription: "Enter the original price and discount percentage.",
     originalPrice: "Original price ($)",
@@ -193,6 +203,10 @@ const translations = {
     targetTabNote: "目标进度",
     profitTab: "利润 / 亏损",
     profitTabNote: "利润与亏损",
+    appsTab: "其他应用",
+    appsTabNote: "即将推出",
+    appsHeading: "其他应用",
+    appsMessage: "请等待更新。",
     discountHeading: "计算折后价格",
     discountDescription: "输入原价和折扣百分比",
     originalPrice: "原价 ($)",
@@ -413,7 +427,8 @@ function selectTool(selectedTab) {
   [
     { tab: discountTab, panel: discountPanel },
     { tab: targetTab, panel: targetPanel },
-    { tab: profitTab, panel: profitPanel }
+    { tab: profitTab, panel: profitPanel },
+    { tab: appsTab, panel: appsPanel }
   ].forEach(({ tab, panel }) => {
     const selected = tab === selectedTab;
     tab.classList.toggle("active", selected);
@@ -451,6 +466,7 @@ languageButtons.forEach((button) => {
 discountTab.addEventListener("click", () => selectTool(discountTab));
 targetTab.addEventListener("click", () => selectTool(targetTab));
 profitTab.addEventListener("click", () => selectTool(profitTab));
+appsTab.addEventListener("click", () => selectTool(appsTab));
 document.getElementById("aboutButton").addEventListener("click", () => {
   aboutDialog.showModal();
 });
