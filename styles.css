@@ -64,7 +64,7 @@ button { -webkit-tap-highlight-color: transparent; }
     url("Cheerful%20Oggy%20Welcome%20Group%20Hug.png");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover, contain;
 }
 
 .intro-content { width: min(100%, 700px); animation: rise-in 0.8s ease both; }
@@ -607,7 +607,7 @@ button { -webkit-tap-highlight-color: transparent; }
   .tool-tab { min-height: 70px; padding: 10px 12px; }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 520px) {   .intro {     align-content: start;     padding: calc(16px + 56.25vw) 18px 18px;     background-position: center, center 16px;     background-size: cover, 100% auto;   }
   .calculator { padding: 18px 14px; }
   .brand { gap: 10px; padding-bottom: 18px; }
   .function-toolbar { gap: 10px; margin-bottom: 22px; }
