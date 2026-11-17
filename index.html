@@ -4,8 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#10233f" id="themeColor">
-  <title>Dragon Calculator | កម្មវិធីគណនាតម្លៃ និងការលក់</title>   <meta name="description" content="Dragon Calculator គឺជាកម្មវិធីគណនាឥតគិតថ្លៃ ជួយគណនាតម្លៃបញ្ចុះ គោលដៅលក់ និងចំណេញ ឬខាត ងាយប្រើជាភាសាខ្មែរ។">   <meta name="robots" content="index, follow">   <link rel="canonical" href="https://dara-rga.github.io/dara-calculator/">   <link rel="icon" type="image/svg+xml" href="favicon.svg?v=dragon-1">   <link rel="stylesheet" href="styles.css?v=responsive-performance-2026-11">   <meta property="og:type" content="website">   <meta property="og:site_name" content="Dragon Calculator">   <meta property="og:title" content="Dragon Calculator | កម្មវិធីគណនាតម្លៃ និងការលក់">   <meta property="og:description" content="គណនាតម្លៃបញ្ចុះ គោលដៅលក់ និងចំណេញ ឬខាត ជាភាសាខ្មែរ ងាយស្រួល និងឥតគិតថ្លៃ។">   <meta property="og:url" content="https://dara-rga.github.io/dara-calculator/">   <meta property="og:locale" content="km_KH">   <meta name="twitter:card" content="summary">   <script type="application/ld+json">     {       "@context": "https://schema.org",       "@type": "WebApplication",       "name": "Dragon Calculator",       "alternateName": "កម្មវិធីគណនា Dragon Calculator",       "url": "https://dara-rga.github.io/dara-calculator/",       "description": "កម្មវិធីឥតគិតថ្លៃសម្រាប់គណនាតម្លៃបញ្ចុះ គោលដៅលក់ និងចំណេញ ឬខាត។",       "applicationCategory": "BusinessApplication",       "operatingSystem": "Any",       "inLanguage": ["km", "en", "zh"],       "isAccessibleForFree": true     }   </script>
-  
+  <title>Dragon Calculator | កម្មវិធីគណនាតម្លៃ និងការលក់</title>
+  <meta name="description" content="Dragon Calculator គឺជាកម្មវិធីគណនាឥតគិតថ្លៃ ជួយគណនាតម្លៃបញ្ចុះ គោលដៅលក់ និងចំណេញ ឬខាត ងាយប្រើជាភាសាខ្មែរ។">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://dara-rga.github.io/dara-calculator/">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=dragon-1">
+  <link rel="stylesheet" href="styles.css?v=lucky-wheel-2026-11">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Dragon Calculator">
+  <meta property="og:title" content="Dragon Calculator | កម្មវិធីគណនាតម្លៃ និងការលក់">
+  <meta property="og:description" content="គណនាតម្លៃបញ្ចុះ គោលដៅលក់ និងចំណេញ ឬខាត ជាភាសាខ្មែរ ងាយស្រួល និងឥតគិតថ្លៃ។">
+  <meta property="og:url" content="https://dara-rga.github.io/dara-calculator/">
+  <meta property="og:locale" content="km_KH">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Dragon Calculator",
+      "alternateName": "កម្មវិធីគណនា Dragon Calculator",
+      "url": "https://dara-rga.github.io/dara-calculator/",
+      "description": "កម្មវិធីឥតគិតថ្លៃសម្រាប់គណនាតម្លៃបញ្ចុះ គោលដៅលក់ និងចំណេញ ឬខាត។",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Any",
+      "inLanguage": ["km", "en", "zh"],
+      "isAccessibleForFree": true
+    }
+  </script>
 </head>
 <body>
   <section class="intro" id="intro" aria-label="ស្វាគមន៍" data-i18n-aria-label="welcome">
@@ -157,7 +182,55 @@
 
     <section class="tool-panel" id="appsPanel" role="tabpanel" aria-labelledby="appsTab" hidden>
       <h2 data-i18n="appsHeading">កម្មវិធីផ្សេងៗ</h2>
-      <p class="section-description" data-i18n="appsMessage">សូមរងចាំ ការUpdate</p>
+      <p class="section-description" data-i18n="appsDescription">ជ្រើសរើសកម្មវិធីដែលអ្នកចង់ប្រើ</p>
+      <div class="apps-grid">
+        <section class="app-card lucky-wheel-card" aria-labelledby="wheelTitle">
+          <header class="app-card-header">
+            <div>
+              <span class="eyebrow" data-i18n="wheelEyebrow">ហ្គេមសំណាង</span>
+              <h3 id="wheelTitle" data-i18n="wheelTitle">កងបង្វិលសំណាង</h3>
+              <p data-i18n="wheelDescription">បញ្ចូលឈ្មោះអ្នកចូលរួមរហូតដល់ 30 នាក់។ អ្នកឈ្នះនឹងត្រូវដកចេញពីកងបង្វិល។</p>
+            </div>
+          </header>
+          <div class="wheel-layout">
+            <div class="wheel-setup">
+              <label class="field" for="wheelNames">
+                <span data-i18n="wheelNamesLabel">បញ្ជីឈ្មោះ (មួយឈ្មោះក្នុងមួយបន្ទាត់)</span>
+                <textarea id="wheelNames" rows="8" maxlength="2500" spellcheck="false" aria-describedby="wheelNamesHelp"></textarea>
+              </label>
+              <p class="wheel-help" id="wheelNamesHelp" data-i18n="wheelNamesHelp">អាចបញ្ចូលបានរហូតដល់ 30 ឈ្មោះ។ ឈ្មោះដែលឈ្នះរួច មិនអាចបញ្ចូលវិញបានទេ។</p>
+              <div class="wheel-actions">
+                <button class="primary-button" id="saveWheelNames" type="button" data-i18n="wheelSaveNames">រក្សាទុកបញ្ជីឈ្មោះ</button>
+                <button class="secondary-button" id="resetWheel" type="button" data-i18n="wheelReset">ចាប់ផ្ដើមជុំថ្មី</button>
+              </div>
+              <p class="wheel-status" id="wheelStatus" aria-live="polite" aria-atomic="true"></p>
+            </div>
+            <div class="wheel-game">
+              <div class="wheel-frame">
+                <span class="wheel-pointer" aria-hidden="true">▼</span>
+                <canvas id="wheelCanvas" width="500" height="500" role="img"></canvas>
+              </div>
+              <button class="primary-button spin-button" id="spinWheel" type="button" data-i18n="wheelSpin" disabled>បង្វិលឥឡូវនេះ</button>
+              <p class="wheel-remaining" id="wheelRemaining" aria-live="polite"></p>
+            </div>
+          </div>
+          <section class="winner-history" aria-labelledby="wheelWinnersHeading">
+            <h4 id="wheelWinnersHeading" data-i18n="wheelWinnersHeading">ឈ្មោះអ្នកឈ្នះ</h4>
+            <ol id="wheelWinners"></ol>
+          </section>
+        </section>
+
+        <section class="app-card stock-card" aria-labelledby="stockSupervisorTitle">
+          <header class="app-card-header">
+            <div>
+              <span class="eyebrow" data-i18n="stockSupervisorEyebrow">កម្មវិធីថ្មី</span>
+              <h3 id="stockSupervisorTitle" data-i18n="stockSupervisorTitle">ស្វែងយល់ផ្នែក Stock Supervisor</h3>
+              <p data-i18n="stockSupervisorDescription">មុខងារនេះកំពុងរៀបចំ។ សូមរង់ចាំការអាប់ដេតបន្ទាប់។</p>
+            </div>
+            <span class="app-status" data-i18n="stockSupervisorStatus">រង់ចាំការអាប់ដេត</span>
+          </header>
+        </section>
+      </div>
     </section>
 
     <footer class="site-footer">
@@ -240,6 +313,6 @@
     </div>
   </dialog>
 
-  <script src="script.js?v=all-features-2026-11" defer></script>
+  <script src="script.js?v=lucky-wheel-2026-11" defer></script>
 </body>
 </html>

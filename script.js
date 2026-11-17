@@ -16,6 +16,22 @@ const discountPanel = document.getElementById("discountPanel");
 const targetPanel = document.getElementById("targetPanel");
 const profitPanel = document.getElementById("profitPanel");
 const appsPanel = document.getElementById("appsPanel");
+const wheelNamesInput = document.getElementById("wheelNames");
+const saveWheelNamesButton = document.getElementById("saveWheelNames");
+const resetWheelButton = document.getElementById("resetWheel");
+const spinWheelButton = document.getElementById("spinWheel");
+const wheelCanvas = document.getElementById("wheelCanvas");
+const wheelContext = wheelCanvas.getContext("2d");
+const wheelStatus = document.getElementById("wheelStatus");
+const wheelRemaining = document.getElementById("wheelRemaining");
+const wheelWinners = document.getElementById("wheelWinners");
+const wheelStorageKey = "dragon-calculator-lucky-wheel-v1";
+const wheelColors = ["#0f8790", "#5267b8", "#d18225", "#6b55a5", "#208b72", "#c64b4b"];
+let wheelState = { participants: [], remaining: [], winners: [] };
+let wheelRotation = 0;
+let wheelIsSpinning = false;
+let wheelNotice = { key: "wheelEmpty" };
+let wheelSpinFallback;
 const originalPrice = document.getElementById("originalPrice");
 const discountRate = document.getElementById("discountRate");
 const discountedPrice = document.getElementById("discountedPrice");
@@ -80,9 +96,36 @@ const translations = {
     profitTab: "ចំណេញ/ខាត",
     profitTabNote: "Profit & loss",
     appsTab: "កម្មវិធីផ្សេងៗ",
-    appsTabNote: "កំពុងអភិវឌ្ឍ",
+    appsTabNote: "ឧបករណ៍បន្ថែម",
     appsHeading: "កម្មវិធីផ្សេងៗ",
-    appsMessage: "សូមរងចាំ ការUpdate",
+    appsDescription: "ជ្រើសរើសកម្មវិធីដែលអ្នកចង់ប្រើ",
+    wheelEyebrow: "ហ្គេមសំណាង",
+    wheelTitle: "កងបង្វិលសំណាង",
+    wheelDescription: "បញ្ចូលឈ្មោះអ្នកចូលរួមរហូតដល់ 30 នាក់។ អ្នកឈ្នះនឹងត្រូវដកចេញពីកងបង្វិល។",
+    wheelNamesLabel: "បញ្ជីឈ្មោះ (មួយឈ្មោះក្នុងមួយបន្ទាត់)",
+    wheelNamesHelp: "អាចបញ្ចូលបានរហូតដល់ 30 ឈ្មោះ។ ឈ្មោះដែលឈ្នះរួច មិនអាចបញ្ចូលវិញបានទេ។",
+    wheelSaveNames: "រក្សាទុកបញ្ជីឈ្មោះ",
+    wheelReset: "ចាប់ផ្ដើមជុំថ្មី",
+    wheelSpin: "បង្វិលឥឡូវនេះ",
+    wheelRemaining: "នៅសល់ {count} / {max} នាក់",
+    wheelWinnersHeading: "ឈ្មោះអ្នកឈ្នះ",
+    wheelNoWinners: "មិនទាន់មានអ្នកឈ្នះ",
+    wheelReady: "បញ្ជីឈ្មោះត្រូវបានរក្សាទុករួច។ អាចចាប់ផ្ដើមបង្វិលបាន។",
+    wheelNamesSaved: "បានរក្សាទុកឈ្មោះ {count} នាក់។",
+    wheelSpinning: "កំពុងបង្វិល...",
+    wheelWinner: "{name} ឈ្នះហើយ! ឈ្មោះត្រូវបានដកចេញពីបញ្ជី។",
+    wheelTooMany: "អាចបញ្ចូលឈ្មោះបានត្រឹមតែ 30 នាក់ប៉ុណ្ណោះ។",
+    wheelDuplicateNames: "មានឈ្មោះស្ទួនក្នុងបញ្ជី។ សូមពិនិត្យម្ដងទៀត។",
+    wheelAlreadyWon: "ឈ្មោះ {name} ឈ្នះរួចហើយ ហើយមិនអាចបញ្ចូលមកបង្វិលវិញបានទេ។",
+    wheelResetConfirm: "ចាប់ផ្ដើមជុំថ្មី? ឈ្មោះអ្នកឈ្នះនឹងត្រូវបានសម្អាត ហើយឈ្មោះទាំងអស់នឹងត្រឡប់មកកងវិញ។",
+    wheelResetDone: "ជុំថ្មីបានចាប់ផ្ដើម។",
+    wheelEmpty: "សូមបញ្ចូលឈ្មោះ និងរក្សាទុកបញ្ជីសិន។",
+    wheelCanvasLabel: "កងបង្វិលសំណាង មានឈ្មោះ {count} នាក់",
+    wheelStorageError: "មិនអាចអានទិន្នន័យចាស់បានទេ។ សូមរក្សាទុកបញ្ជីថ្មី ឬចាប់ផ្ដើមជុំថ្មី។",
+    stockSupervisorEyebrow: "កម្មវិធីថ្មី",
+    stockSupervisorTitle: "ស្វែងយល់ផ្នែក Stock Supervisor",
+    stockSupervisorDescription: "មុខងារនេះកំពុងរៀបចំ។ សូមរង់ចាំការអាប់ដេតបន្ទាប់។",
+    stockSupervisorStatus: "រង់ចាំការអាប់ដេត",
     discountHeading: "គណនាតម្លៃក្រោយបញ្ចុះ",
     discountDescription: "បញ្ចូលតម្លៃដើម និងភាគរយបញ្ចុះតម្លៃ",
     originalPrice: "តម្លៃដើម ($)",
@@ -176,9 +219,36 @@ const translations = {
     profitTab: "Profit / loss",
     profitTabNote: "Profit & loss",
     appsTab: "Other apps",
-    appsTabNote: "Coming soon",
+    appsTabNote: "More tools",
     appsHeading: "Other apps",
-    appsMessage: "Please wait for the update.",
+    appsDescription: "Choose an app to use.",
+    wheelEyebrow: "LUCKY GAME",
+    wheelTitle: "Lucky Spin Wheel",
+    wheelDescription: "Enter up to 30 participant names. Each winner is removed from the wheel.",
+    wheelNamesLabel: "Names (one per line)",
+    wheelNamesHelp: "Enter up to 30 names. A winner cannot be added back to the same game.",
+    wheelSaveNames: "Save participant list",
+    wheelReset: "Start a new game",
+    wheelSpin: "Spin the wheel",
+    wheelRemaining: "{count} / {max} participants remaining",
+    wheelWinnersHeading: "Winners",
+    wheelNoWinners: "No winners yet.",
+    wheelReady: "Your list is saved. The wheel is ready.",
+    wheelNamesSaved: "Saved {count} participant names.",
+    wheelSpinning: "Spinning...",
+    wheelWinner: "{name} wins! Their name has been removed from the wheel.",
+    wheelTooMany: "You can enter up to 30 names.",
+    wheelDuplicateNames: "Duplicate names found. Please check the list.",
+    wheelAlreadyWon: "{name} has already won and cannot be added back to the wheel.",
+    wheelResetConfirm: "Start a new game? This clears the winner history and returns everyone to the wheel.",
+    wheelResetDone: "A new game has started.",
+    wheelEmpty: "Enter names and save the list before spinning.",
+    wheelCanvasLabel: "Lucky wheel with {count} participant names",
+    wheelStorageError: "The saved game data could not be read. Save a new list or start a new game.",
+    stockSupervisorEyebrow: "COMING SOON",
+    stockSupervisorTitle: "Explore Stock Supervisor",
+    stockSupervisorDescription: "This feature is being prepared. Please check back for a future update.",
+    stockSupervisorStatus: "Waiting for update",
     discountHeading: "Discounted price",
     discountDescription: "Enter the original price and discount percentage.",
     originalPrice: "Original price ($)",
@@ -272,9 +342,36 @@ const translations = {
     profitTab: "利润 / 亏损",
     profitTabNote: "利润与亏损",
     appsTab: "其他应用",
-    appsTabNote: "即将推出",
+    appsTabNote: "更多工具",
     appsHeading: "其他应用",
-    appsMessage: "请等待更新。",
+    appsDescription: "选择要使用的应用。",
+    wheelEyebrow: "幸运游戏",
+    wheelTitle: "幸运转盘",
+    wheelDescription: "最多输入 30 位参与者的姓名。每位获胜者都会从转盘中移除。",
+    wheelNamesLabel: "姓名（每行一个）",
+    wheelNamesHelp: "最多输入 30 个姓名。获胜者不能重新加入本轮游戏。",
+    wheelSaveNames: "保存参与者名单",
+    wheelReset: "开始新一轮",
+    wheelSpin: "开始旋转",
+    wheelRemaining: "剩余 {count} / {max} 人",
+    wheelWinnersHeading: "获胜者",
+    wheelNoWinners: "暂无获胜者。",
+    wheelReady: "名单已保存，转盘已准备就绪。",
+    wheelNamesSaved: "已保存 {count} 位参与者。",
+    wheelSpinning: "转盘旋转中……",
+    wheelWinner: "{name} 获胜！该姓名已从转盘中移除。",
+    wheelTooMany: "最多只能输入 30 个姓名。",
+    wheelDuplicateNames: "名单中有重复姓名，请检查后再试。",
+    wheelAlreadyWon: "{name} 已经获胜，不能重新加入转盘。",
+    wheelResetConfirm: "开始新一轮？这将清除获胜记录，并让所有人重新参加。",
+    wheelResetDone: "新一轮已开始。",
+    wheelEmpty: "请先输入姓名并保存名单。",
+    wheelCanvasLabel: "幸运转盘，共有 {count} 位参与者",
+    wheelStorageError: "无法读取已保存的游戏数据。请保存新名单或开始新一轮。",
+    stockSupervisorEyebrow: "即将推出",
+    stockSupervisorTitle: "了解 Stock Supervisor",
+    stockSupervisorDescription: "该功能正在准备中，请等待后续更新。",
+    stockSupervisorStatus: "等待更新",
     discountHeading: "计算折后价格",
     discountDescription: "输入原价和折扣百分比",
     originalPrice: "原价 ($)",
@@ -377,6 +474,7 @@ function setLanguage(language) {
   updateDiscount();
   updateTarget();
   updateProfitLoss();
+  renderWheel();
 }
 
 function updateThemeButton() {
@@ -393,6 +491,7 @@ function setTheme(theme) {
   themeColor.content = isDark ? "#101923" : "#10233f";
   localStorage.setItem("dragon-calculator-theme", isDark ? "dark" : "light");
   updateThemeButton();
+  renderWheel();
 }
 
 function formatMoney(value) {
@@ -523,6 +622,232 @@ function updateProfitDiscountMode() {
   updateProfitLoss();
 }
 
+function normalizeWheelName(name) {
+  return name.normalize("NFC").toLocaleLowerCase();
+}
+
+function saveWheelState() {
+  localStorage.setItem(wheelStorageKey, JSON.stringify(wheelState));
+}
+
+function setWheelNotice(key, values) {
+  wheelNotice = { key, values };
+  wheelStatus.textContent = translate(key, values);
+}
+
+function drawLuckyWheel() {
+  const { width, height } = wheelCanvas;
+  const centerX = width / 2;
+  const centerY = height / 2;
+  const radius = Math.min(centerX, centerY) - 5;
+  const names = wheelState.remaining;
+  const lineColor = getComputedStyle(document.documentElement).getPropertyValue("--line").trim() || "#e2e8f0";
+  const surfaceColor = getComputedStyle(document.documentElement).getPropertyValue("--surface").trim() || "#ffffff";
+
+  wheelContext.clearRect(0, 0, width, height);
+  wheelContext.beginPath();
+  wheelContext.arc(centerX, centerY, radius, 0, Math.PI * 2);
+  wheelContext.fillStyle = lineColor;
+  wheelContext.fill();
+
+  if (names.length === 0) {
+    wheelContext.beginPath();
+    wheelContext.arc(centerX, centerY, radius - 3, 0, Math.PI * 2);
+    wheelContext.fillStyle = surfaceColor;
+    wheelContext.fill();
+    return;
+  }
+
+  const sliceAngle = Math.PI * 2 / names.length;
+  const fontSize = names.length > 20 ? 10 : names.length > 12 ? 12 : 15;
+  names.forEach((name, index) => {
+    const startAngle = -Math.PI / 2 + index * sliceAngle;
+    const endAngle = startAngle + sliceAngle;
+
+    wheelContext.beginPath();
+    wheelContext.moveTo(centerX, centerY);
+    wheelContext.arc(centerX, centerY, radius - 3, startAngle, endAngle);
+    wheelContext.closePath();
+    wheelContext.fillStyle = wheelColors[index % wheelColors.length];
+    wheelContext.fill();
+    wheelContext.strokeStyle = "#ffffff";
+    wheelContext.lineWidth = 2;
+    wheelContext.stroke();
+
+    wheelContext.save();
+    wheelContext.translate(centerX, centerY);
+    wheelContext.rotate(startAngle + sliceAngle / 2);
+    wheelContext.fillStyle = "#ffffff";
+    wheelContext.font = `600 ${fontSize}px system-ui, "Noto Sans Khmer", sans-serif`;
+    wheelContext.textAlign = "right";
+    wheelContext.textBaseline = "middle";
+    const labelWidth = Math.max(12, 2 * (radius - 24) * Math.sin(sliceAngle / 2) - 4);
+    wheelContext.fillText(name, radius - 18, 0, labelWidth);
+    wheelContext.restore();
+  });
+
+  wheelContext.beginPath();
+  wheelContext.arc(centerX, centerY, radius * 0.13, 0, Math.PI * 2);
+  wheelContext.fillStyle = surfaceColor;
+  wheelContext.fill();
+  wheelContext.strokeStyle = lineColor;
+  wheelContext.lineWidth = 3;
+  wheelContext.stroke();
+}
+
+function renderWheel() {
+  wheelRemaining.textContent = translate("wheelRemaining", {
+    count: String(wheelState.remaining.length),
+    max: "30"
+  });
+  wheelStatus.textContent = translate(wheelNotice.key, wheelNotice.values);
+  wheelCanvas.setAttribute("aria-label", translate("wheelCanvasLabel", {
+    count: String(wheelState.remaining.length)
+  }));
+  spinWheelButton.disabled = wheelIsSpinning || wheelState.remaining.length === 0;
+  saveWheelNamesButton.disabled = wheelIsSpinning;
+  resetWheelButton.disabled = wheelIsSpinning || wheelState.participants.length === 0;
+  wheelNamesInput.disabled = wheelIsSpinning;
+
+  wheelWinners.textContent = "";
+  if (wheelState.winners.length === 0) {
+    const emptyItem = document.createElement("li");
+    emptyItem.className = "winner-empty";
+    emptyItem.textContent = translate("wheelNoWinners");
+    wheelWinners.append(emptyItem);
+  } else {
+    wheelState.winners.forEach((name) => {
+      const item = document.createElement("li");
+      item.textContent = name;
+      wheelWinners.append(item);
+    });
+  }
+
+  if (!wheelIsSpinning) drawLuckyWheel();
+}
+
+function initializeWheel() {
+  const savedState = localStorage.getItem(wheelStorageKey);
+  if (savedState) {
+    try {
+      const parsed = JSON.parse(savedState);
+      const nameLists = [parsed.participants, parsed.remaining, parsed.winners];
+      if (!parsed || nameLists.some((names) => !Array.isArray(names)
+        || names.some((name) => typeof name !== "string" || !name.trim())
+        || names.some((name) => name !== name.trim()))) {
+        throw new Error("Saved lucky wheel data has an invalid shape.");
+      }
+
+      const allNames = [...parsed.remaining, ...parsed.winners];
+      const participantKeys = parsed.participants.map(normalizeWheelName);
+      const playedKeys = allNames.map(normalizeWheelName);
+      const participantSet = new Set(participantKeys);
+      if (parsed.participants.length > 30
+        || parsed.remaining.length + parsed.winners.length > 30
+        || participantSet.size !== participantKeys.length
+        || new Set(playedKeys).size !== playedKeys.length
+        || playedKeys.some((name) => !participantSet.has(name))) {
+        throw new Error("Saved lucky wheel data is inconsistent.");
+      }
+
+      wheelState = {
+        participants: [...parsed.participants],
+        remaining: [...parsed.remaining],
+        winners: [...parsed.winners]
+      };
+    } catch (error) {
+      console.error("Could not restore the saved lucky wheel game.", error);
+      wheelNotice = { key: "wheelStorageError" };
+    }
+  }
+
+  wheelNamesInput.value = wheelState.remaining.join("\n");
+  renderWheel();
+}
+
+function saveWheelNames() {
+  if (wheelIsSpinning) return;
+  const names = wheelNamesInput.value.split(/\r?\n/).map((name) => name.trim()).filter(Boolean);
+  if (names.length + wheelState.winners.length > 30) {
+    setWheelNotice("wheelTooMany");
+    return;
+  }
+
+  const nameKeys = names.map(normalizeWheelName);
+  if (new Set(nameKeys).size !== nameKeys.length) {
+    setWheelNotice("wheelDuplicateNames");
+    return;
+  }
+
+  const winnerKeys = new Set(wheelState.winners.map(normalizeWheelName));
+  const alreadyWon = names.find((name) => winnerKeys.has(normalizeWheelName(name)));
+  if (alreadyWon) {
+    setWheelNotice("wheelAlreadyWon", { name: alreadyWon });
+    return;
+  }
+
+  wheelState.remaining = names;
+  wheelState.participants = [...names, ...wheelState.winners];
+  saveWheelState();
+  setWheelNotice("wheelNamesSaved", { count: String(names.length) });
+  renderWheel();
+}
+
+function resetWheel() {
+  if (wheelIsSpinning || wheelState.participants.length === 0) return;
+  if (!window.confirm(translate("wheelResetConfirm"))) return;
+
+  wheelState.remaining = [...wheelState.participants];
+  wheelState.winners = [];
+  wheelNamesInput.value = wheelState.remaining.join("\n");
+  saveWheelState();
+  setWheelNotice("wheelResetDone");
+  renderWheel();
+}
+
+function spinWheel() {
+  if (wheelIsSpinning || wheelState.remaining.length === 0) return;
+
+  const selectedIndex = Math.floor(Math.random() * wheelState.remaining.length);
+  const selectedName = wheelState.remaining[selectedIndex];
+  const sliceDegrees = 360 / wheelState.remaining.length;
+  const desiredRotation = ((-(selectedIndex + 0.5) * sliceDegrees) % 360 + 360) % 360;
+  const currentRotation = ((wheelRotation % 360) + 360) % 360;
+  const alignmentRotation = (desiredRotation - currentRotation + 360) % 360;
+  const fullTurns = 5 + Math.floor(Math.random() * 3);
+  wheelRotation += fullTurns * 360 + alignmentRotation;
+  wheelIsSpinning = true;
+  setWheelNotice("wheelSpinning");
+  renderWheel();
+
+  let finished = false;
+  const finishSpin = () => {
+    if (finished) return;
+    finished = true;
+    window.clearTimeout(wheelSpinFallback);
+    wheelCanvas.removeEventListener("transitionend", handleTransitionEnd);
+    wheelIsSpinning = false;
+    wheelState.remaining.splice(selectedIndex, 1);
+    wheelState.winners.push(selectedName);
+    wheelNamesInput.value = wheelState.remaining.join("\n");
+    saveWheelState();
+    setWheelNotice("wheelWinner", { name: selectedName });
+    renderWheel();
+  };
+  const handleTransitionEnd = (event) => {
+    if (event.target === wheelCanvas && event.propertyName === "transform") finishSpin();
+  };
+
+  wheelCanvas.addEventListener("transitionend", handleTransitionEnd);
+  wheelSpinFallback = window.setTimeout(finishSpin, 5000);
+  requestAnimationFrame(() => {
+    wheelCanvas.style.transform = `rotate(${wheelRotation}deg)`;
+  });
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    window.setTimeout(finishSpin, 50);
+  }
+}
+
 function selectTool(selectedTab) {
   [
     { tab: discountTab, panel: discountPanel },
@@ -559,6 +884,9 @@ document.getElementById("profitForm").addEventListener("submit", (event) => {
 profitDiscountModes.forEach((input) => {
   input.addEventListener("change", updateProfitDiscountMode);
 });
+saveWheelNamesButton.addEventListener("click", saveWheelNames);
+spinWheelButton.addEventListener("click", spinWheel);
+resetWheelButton.addEventListener("click", resetWheel);
 languageButtons.forEach((button) => {
   button.addEventListener("click", () => setLanguage(button.dataset.language));
 });
@@ -599,5 +927,6 @@ document.getElementById("skipIntro").addEventListener("click", () => {
   intro.classList.add("dismissed");
 });
 
+initializeWheel();
 setLanguage("km");
 setTheme(localStorage.getItem("dragon-calculator-theme") === "dark" ? "dark" : "light");
