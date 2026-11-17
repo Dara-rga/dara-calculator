@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dara-rga.github.io/dara-calculator/sitemap.xml
