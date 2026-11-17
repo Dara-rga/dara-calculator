@@ -49,7 +49,7 @@ const percentFormat = new Intl.NumberFormat("en-US", {
 
 const translations = {
   km: {
-    pageTitle: "កម្មវិធីគណនាតម្លៃ និងការលក់ | វ៉ន ដារ៉ា",
+    pageTitle: "Dragon Calculator | កម្មវិធីគណនាតម្លៃ និងការលក់",
     creatorName: "វ៉ន ដារ៉ា",
     welcome: "ស្វាគមន៍",
     welcomeMessage: "សូមស្វាគមន៍មកកាន់ Dragon Calculator!",
@@ -145,7 +145,7 @@ const translations = {
     breakEven: "ស្មើដើម $0"
   },
   en: {
-    pageTitle: "Sales & Discount Calculator | Vorn Dara",
+    pageTitle: "Dragon Calculator | Sales & Discount Calculator | Vorn Dara",
     creatorName: "Vorn Dara",
     welcome: "Welcome",
     welcomeMessage: "Welcome to Dragon Calculator!",
@@ -241,7 +241,7 @@ const translations = {
     breakEven: "Break-even: $0"
   },
   zh: {
-    pageTitle: "销售与折扣计算器 | Vorn Dara",
+    pageTitle: "Dragon Calculator | 销售与折扣计算器 | Vorn Dara",
     creatorName: "Vorn Dara",
     welcome: "欢迎",
     welcomeMessage: "欢迎来到龙计算器！",
