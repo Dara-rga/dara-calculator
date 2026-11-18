@@ -16,6 +16,19 @@ const discountPanel = document.getElementById("discountPanel");
 const targetPanel = document.getElementById("targetPanel");
 const profitPanel = document.getElementById("profitPanel");
 const appsPanel = document.getElementById("appsPanel");
+const appsHeading = document.getElementById("appsHeading");
+const appsDescription = document.getElementById("appsDescription");
+const appPicker = document.getElementById("appPicker");
+const openWheelAppButton = document.getElementById("openWheelApp");
+const openStockAppButton = document.getElementById("openStockApp");
+const luckyWheelView = document.getElementById("luckyWheelView");
+const stockSupervisorView = document.getElementById("stockSupervisorView");
+const stockSupervisorOverview = document.getElementById("stockSupervisorOverview");
+const stockFeaturePicker = document.getElementById("stockFeaturePicker");
+const openMonthlyExpButton = document.getElementById("openMonthlyExp");
+const openIncomingExpButton = document.getElementById("openIncomingExp");
+const monthlyExpView = document.getElementById("monthlyExpView");
+const incomingExpView = document.getElementById("incomingExpView");
 const wheelNamesInput = document.getElementById("wheelNames");
 const saveWheelNamesButton = document.getElementById("saveWheelNames");
 const resetWheelButton = document.getElementById("resetWheel");
@@ -99,6 +112,8 @@ const translations = {
     appsTabNote: "ឧបករណ៍បន្ថែម",
     appsHeading: "កម្មវិធីផ្សេងៗ",
     appsDescription: "ជ្រើសរើសកម្មវិធីដែលអ្នកចង់ប្រើ",
+    backToApps: "ត្រឡប់ទៅជម្រើសមុខងារ",
+    backToStockFeatures: "ត្រឡប់ក្រោយ",
     wheelEyebrow: "ហ្គេមសំណាង",
     wheelTitle: "កងបង្វិលសំណាង",
     wheelDescription: "បញ្ចូលឈ្មោះអ្នកចូលរួមរហូតដល់ 30 នាក់។ អ្នកឈ្នះនឹងត្រូវដកចេញពីកងបង្វិល។",
@@ -125,7 +140,9 @@ const translations = {
     stockSupervisorEyebrow: "កម្មវិធីថ្មី",
     stockSupervisorTitle: "ស្វែងយល់ផ្នែក Stock Supervisor",
     stockSupervisorDescription: "មុខងារនេះកំពុងរៀបចំ។ សូមរង់ចាំការអាប់ដេតបន្ទាប់។",
-    stockSupervisorStatus: "រង់ចាំការអាប់ដេត",
+    monthlyExpTitle: "លក្ខណៈនៃការឆែក EXP ប្រចាំខែ",
+    incomingExpTitle: "លក្ខណៈនៃការមើល EXP ដែលត្រូវទទួលលក់",
+    stockFeatureStatus: "កំពុង Update",
     discountHeading: "គណនាតម្លៃក្រោយបញ្ចុះ",
     discountDescription: "បញ្ចូលតម្លៃដើម និងភាគរយបញ្ចុះតម្លៃ",
     originalPrice: "តម្លៃដើម ($)",
@@ -222,6 +239,8 @@ const translations = {
     appsTabNote: "More tools",
     appsHeading: "Other apps",
     appsDescription: "Choose an app to use.",
+    backToApps: "Back to app choices",
+    backToStockFeatures: "Go back",
     wheelEyebrow: "LUCKY GAME",
     wheelTitle: "Lucky Spin Wheel",
     wheelDescription: "Enter up to 30 participant names. Each winner is removed from the wheel.",
@@ -248,7 +267,9 @@ const translations = {
     stockSupervisorEyebrow: "COMING SOON",
     stockSupervisorTitle: "Explore Stock Supervisor",
     stockSupervisorDescription: "This feature is being prepared. Please check back for a future update.",
-    stockSupervisorStatus: "Waiting for update",
+    monthlyExpTitle: "Monthly EXP check",
+    incomingExpTitle: "EXP items to receive for sale",
+    stockFeatureStatus: "Updating",
     discountHeading: "Discounted price",
     discountDescription: "Enter the original price and discount percentage.",
     originalPrice: "Original price ($)",
@@ -345,6 +366,8 @@ const translations = {
     appsTabNote: "更多工具",
     appsHeading: "其他应用",
     appsDescription: "选择要使用的应用。",
+    backToApps: "返回应用选项",
+    backToStockFeatures: "返回",
     wheelEyebrow: "幸运游戏",
     wheelTitle: "幸运转盘",
     wheelDescription: "最多输入 30 位参与者的姓名。每位获胜者都会从转盘中移除。",
@@ -371,7 +394,9 @@ const translations = {
     stockSupervisorEyebrow: "即将推出",
     stockSupervisorTitle: "了解 Stock Supervisor",
     stockSupervisorDescription: "该功能正在准备中，请等待后续更新。",
-    stockSupervisorStatus: "等待更新",
+    monthlyExpTitle: "每月 EXP 检查",
+    incomingExpTitle: "待接收销售的 EXP 商品",
+    stockFeatureStatus: "正在更新",
     discountHeading: "计算折后价格",
     discountDescription: "输入原价和折扣百分比",
     originalPrice: "原价 ($)",
@@ -859,7 +884,58 @@ function selectTool(selectedTab) {
     tab.classList.toggle("active", selected);
     tab.setAttribute("aria-selected", String(selected));
     panel.hidden = !selected;
+    if (selected) animateEntrance(panel);
   });
+}
+
+function animateEntrance(element) {
+  element.classList.remove("view-enter");
+  void element.offsetWidth;
+  element.classList.add("view-enter");
+}
+
+function showAppChoices() {
+  appsHeading.hidden = false;
+  appsDescription.hidden = false;
+  appPicker.hidden = false;
+  animateEntrance(appPicker);
+  luckyWheelView.hidden = true;
+  stockSupervisorView.hidden = true;
+  showStockFeatureChoices();
+  openWheelAppButton.setAttribute("aria-expanded", "false");
+  openStockAppButton.setAttribute("aria-expanded", "false");
+}
+
+function showAppView(view, selectedButton) {
+  appsHeading.hidden = true;
+  appsDescription.hidden = true;
+  appPicker.hidden = true;
+  luckyWheelView.hidden = view !== luckyWheelView;
+  stockSupervisorView.hidden = view !== stockSupervisorView;
+  animateEntrance(view);
+  openWheelAppButton.setAttribute("aria-expanded", String(selectedButton === openWheelAppButton));
+  openStockAppButton.setAttribute("aria-expanded", String(selectedButton === openStockAppButton));
+}
+
+function showStockFeatureChoices() {
+  stockSupervisorOverview.hidden = false;
+  stockFeaturePicker.hidden = false;
+  monthlyExpView.hidden = true;
+  incomingExpView.hidden = true;
+  animateEntrance(stockSupervisorOverview);
+  openMonthlyExpButton.setAttribute("aria-expanded", "false");
+  openIncomingExpButton.setAttribute("aria-expanded", "false");
+}
+
+function showStockFeature(view, selectedButton) {
+  stockSupervisorOverview.hidden = true;
+  stockFeaturePicker.hidden = true;
+  monthlyExpView.hidden = view !== monthlyExpView;
+  incomingExpView.hidden = view !== incomingExpView;
+  animateEntrance(view);
+  openMonthlyExpButton.setAttribute("aria-expanded", String(selectedButton === openMonthlyExpButton));
+  openIncomingExpButton.setAttribute("aria-expanded", String(selectedButton === openIncomingExpButton));
+  view.querySelector("h3").focus();
 }
 
 document.getElementById("discountForm").addEventListener("submit", (event) => {
@@ -898,7 +974,31 @@ themeButton.addEventListener("click", () => {
 discountTab.addEventListener("click", () => selectTool(discountTab));
 targetTab.addEventListener("click", () => selectTool(targetTab));
 profitTab.addEventListener("click", () => selectTool(profitTab));
-appsTab.addEventListener("click", () => selectTool(appsTab));
+appsTab.addEventListener("click", () => {
+  showAppChoices();
+  selectTool(appsTab);
+});
+openWheelAppButton.addEventListener("click", () => showAppView(luckyWheelView, openWheelAppButton));
+openStockAppButton.addEventListener("click", () => {
+  showStockFeatureChoices();
+  showAppView(stockSupervisorView, openStockAppButton);
+});
+openMonthlyExpButton.addEventListener("click", () => showStockFeature(monthlyExpView, openMonthlyExpButton));
+openIncomingExpButton.addEventListener("click", () => showStockFeature(incomingExpView, openIncomingExpButton));
+document.querySelectorAll("[data-stock-back]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const selectedButton = button.dataset.stockBack === "incoming" ? openIncomingExpButton : openMonthlyExpButton;
+    showStockFeatureChoices();
+    selectedButton.focus();
+  });
+});
+document.querySelectorAll("[data-app-back]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const selectedButton = button.closest("#stockSupervisorView") ? openStockAppButton : openWheelAppButton;
+    showAppChoices();
+    selectedButton.focus();
+  });
+});
 document.getElementById("aboutButton").addEventListener("click", () => {
   aboutDialog.showModal();
 });

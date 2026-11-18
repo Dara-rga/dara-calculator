@@ -9,7 +9,7 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://dara-rga.github.io/dara-calculator/">
   <link rel="icon" type="image/svg+xml" href="favicon.svg?v=dragon-1">
-  <link rel="stylesheet" href="styles.css?v=lucky-wheel-2026-11">
+  <link rel="stylesheet" href="styles.css?v=visual-effects-2026-11">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Dragon Calculator">
   <meta property="og:title" content="Dragon Calculator | កម្មវិធីគណនាតម្លៃ និងការលក់">
@@ -51,6 +51,16 @@
           <small class="brand-tagline" data-i18n="brandTagline">ភាពអាចទៅរួច</small>
         </span>
       </span>
+      <div class="brand-actions">
+        <button class="about-button" id="settingsButton" type="button" aria-haspopup="dialog" aria-controls="settingsDialog">
+          <span class="info-icon" aria-hidden="true">⚙</span>
+          <span data-i18n="settingsButton">ការកំណត់</span>
+        </button>
+        <button class="about-button" id="aboutButton" type="button" aria-haspopup="dialog">
+          <span class="info-icon" aria-hidden="true">i</span>
+          <span data-i18n="aboutButton">អំពីកម្មវិធី</span>
+        </button>
+      </div>
     </header>
 
     <div class="function-toolbar">
@@ -70,16 +80,6 @@
         <button class="tool-tab" id="appsTab" type="button" role="tab" aria-selected="false" aria-controls="appsPanel">
           <span class="tab-icon" aria-hidden="true">▦</span>
           <span class="tab-copy"><span data-i18n="appsTab">កម្មវិធីផ្សេងៗ</span><small data-i18n="appsTabNote">Other apps</small></span>
-        </button>
-      </div>
-      <div class="brand-actions">
-        <button class="about-button" id="settingsButton" type="button" aria-haspopup="dialog" aria-controls="settingsDialog">
-          <span class="info-icon" aria-hidden="true">⚙</span>
-          <span data-i18n="settingsButton">ការកំណត់</span>
-        </button>
-        <button class="about-button" id="aboutButton" type="button" aria-haspopup="dialog">
-          <span class="info-icon" aria-hidden="true">i</span>
-          <span data-i18n="aboutButton">អំពីកម្មវិធី</span>
         </button>
       </div>
     </div>
@@ -181,9 +181,29 @@
     </section>
 
     <section class="tool-panel" id="appsPanel" role="tabpanel" aria-labelledby="appsTab" hidden>
-      <h2 data-i18n="appsHeading">កម្មវិធីផ្សេងៗ</h2>
-      <p class="section-description" data-i18n="appsDescription">ជ្រើសរើសកម្មវិធីដែលអ្នកចង់ប្រើ</p>
-      <div class="apps-grid">
+      <h2 id="appsHeading" data-i18n="appsHeading">កម្មវិធីផ្សេងៗ</h2>
+      <p class="section-description" id="appsDescription" data-i18n="appsDescription">ជ្រើសរើសកម្មវិធីដែលអ្នកចង់ប្រើ</p>
+      <div class="app-picker" id="appPicker" role="group" data-i18n-aria-label="appsHeading">
+        <button class="app-choice" id="openWheelApp" type="button" aria-controls="luckyWheelView" aria-expanded="false">
+          <span class="app-choice-icon wheel-choice-icon" aria-hidden="true">↻</span>
+          <span class="app-choice-copy">
+            <strong data-i18n="wheelTitle">កងបង្វិលសំណាង</strong>
+            <small data-i18n="wheelDescription">បញ្ចូលឈ្មោះអ្នកចូលរួមរហូតដល់ 30 នាក់។ អ្នកឈ្នះនឹងត្រូវដកចេញពីកងបង្វិល។</small>
+          </span>
+          <span class="app-choice-arrow" aria-hidden="true">›</span>
+        </button>
+        <button class="app-choice" id="openStockApp" type="button" aria-controls="stockSupervisorView" aria-expanded="false">
+          <span class="app-choice-icon stock-choice-icon" aria-hidden="true">▦</span>
+          <span class="app-choice-copy">
+            <strong data-i18n="stockSupervisorTitle">ស្វែងយល់ផ្នែក Stock Supervisor</strong>
+            <small data-i18n="stockSupervisorDescription">មុខងារនេះកំពុងរៀបចំ។ សូមរង់ចាំការអាប់ដេតបន្ទាប់។</small>
+          </span>
+          <span class="app-choice-arrow" aria-hidden="true">›</span>
+        </button>
+      </div>
+
+      <div class="app-view" id="luckyWheelView" hidden>
+        <button class="app-back-button" type="button" data-app-back data-i18n="backToApps">ត្រឡប់ទៅជម្រើសមុខងារ</button>
         <section class="app-card lucky-wheel-card" aria-labelledby="wheelTitle">
           <header class="app-card-header">
             <div>
@@ -219,15 +239,56 @@
             <ol id="wheelWinners"></ol>
           </section>
         </section>
+      </div>
 
-        <section class="app-card stock-card" aria-labelledby="stockSupervisorTitle">
+      <div class="app-view" id="stockSupervisorView" hidden>
+        <button class="app-back-button" type="button" data-app-back>
+          <span aria-hidden="true">←</span>
+          <span data-i18n="backToApps">ត្រឡប់ទៅជម្រើសមុខងារ</span>
+        </button>
+        <section class="app-card stock-card" id="stockSupervisorOverview" aria-labelledby="stockSupervisorTitle">
           <header class="app-card-header">
             <div>
               <span class="eyebrow" data-i18n="stockSupervisorEyebrow">កម្មវិធីថ្មី</span>
               <h3 id="stockSupervisorTitle" data-i18n="stockSupervisorTitle">ស្វែងយល់ផ្នែក Stock Supervisor</h3>
               <p data-i18n="stockSupervisorDescription">មុខងារនេះកំពុងរៀបចំ។ សូមរង់ចាំការអាប់ដេតបន្ទាប់។</p>
             </div>
-            <span class="app-status" data-i18n="stockSupervisorStatus">រង់ចាំការអាប់ដេត</span>
+          </header>
+          <div class="stock-feature-grid" id="stockFeaturePicker">
+            <button class="stock-feature" id="openMonthlyExp" type="button" aria-controls="monthlyExpView" aria-expanded="false">
+              <span class="stock-feature-title" data-i18n="monthlyExpTitle">លក្ខណៈនៃការឆែក EXP ប្រចាំខែ</span>
+              <span class="app-status" data-i18n="stockFeatureStatus">កំពុង Update</span>
+            </button>
+            <button class="stock-feature" id="openIncomingExp" type="button" aria-controls="incomingExpView" aria-expanded="false">
+              <span class="stock-feature-title" data-i18n="incomingExpTitle">លក្ខណៈនៃការមើល EXP ដែលត្រូវទទួលលក់</span>
+              <span class="app-status" data-i18n="stockFeatureStatus">កំពុង Update</span>
+            </button>
+          </div>
+        </section>
+        <section class="app-card stock-feature-detail" id="monthlyExpView" aria-labelledby="monthlyExpViewTitle" hidden>
+          <button class="app-back-button" type="button" data-stock-back="monthly">
+            <span aria-hidden="true">←</span>
+            <span data-i18n="backToStockFeatures">ត្រឡប់ក្រោយ</span>
+          </button>
+          <header class="app-card-header">
+            <div>
+              <span class="eyebrow" data-i18n="stockSupervisorEyebrow">កម្មវិធីថ្មី</span>
+              <h3 id="monthlyExpViewTitle" tabindex="-1" data-i18n="monthlyExpTitle">លក្ខណៈនៃការឆែក EXP ប្រចាំខែ</h3>
+            </div>
+            <span class="app-status" data-i18n="stockFeatureStatus">កំពុង Update</span>
+          </header>
+        </section>
+        <section class="app-card stock-feature-detail" id="incomingExpView" aria-labelledby="incomingExpViewTitle" hidden>
+          <button class="app-back-button" type="button" data-stock-back="incoming">
+            <span aria-hidden="true">←</span>
+            <span data-i18n="backToStockFeatures">ត្រឡប់ក្រោយ</span>
+          </button>
+          <header class="app-card-header">
+            <div>
+              <span class="eyebrow" data-i18n="stockSupervisorEyebrow">កម្មវិធីថ្មី</span>
+              <h3 id="incomingExpViewTitle" tabindex="-1" data-i18n="incomingExpTitle">លក្ខណៈនៃការមើល EXP ដែលត្រូវទទួលលក់</h3>
+            </div>
+            <span class="app-status" data-i18n="stockFeatureStatus">កំពុង Update</span>
           </header>
         </section>
       </div>
@@ -313,6 +374,6 @@
     </div>
   </dialog>
 
-  <script src="script.js?v=lucky-wheel-2026-11" defer></script>
+  <script src="script.js?v=visual-effects-2026-11" defer></script>
 </body>
 </html>
