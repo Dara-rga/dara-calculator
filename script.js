@@ -28,9 +28,7 @@ const luckyWheelView = document.getElementById("luckyWheelView");
 const stockSupervisorView = document.getElementById("stockSupervisorView");
 const stockSupervisorOverview = document.getElementById("stockSupervisorOverview");
 const stockFeaturePicker = document.getElementById("stockFeaturePicker");
-const openMonthlyExpButton = document.getElementById("openMonthlyExp");
 const openIncomingExpButton = document.getElementById("openIncomingExp");
-const monthlyExpView = document.getElementById("monthlyExpView");
 const incomingExpView = document.getElementById("incomingExpView");
 const wheelNamesInput = document.getElementById("wheelNames");
 const saveWheelNamesButton = document.getElementById("saveWheelNames");
@@ -70,17 +68,6 @@ const profitDiscountModes = document.querySelectorAll('input[name="profitDiscoun
 const profitLossResult = document.getElementById("profitLossResult");
 const profitSalePrice = document.getElementById("profitSalePrice");
 const profitCalculation = document.getElementById("profitCalculation");
-const expForm = document.getElementById("expForm");
-const expManufactureDate = document.getElementById("expYear") ? {
-  day: document.getElementById("expDay"),
-  month: document.getElementById("expMonth"),
-  year: document.getElementById("expYear")
-} : null;
-initializeExpYearSelect(expManufactureDate?.year, 2026);
-const expYears = document.getElementById("expYears");
-const expMonths = document.getElementById("expMonths");
-const expResultDate = document.getElementById("expResultDate");
-const expCalculationDetail = document.getElementById("expCalculationDetail");
 
 const moneyFormat = new Intl.NumberFormat("en-US", {
   minimumFractionDigits: 0,
@@ -965,20 +952,16 @@ function showAppView(view, selectedButton) {
 function showStockFeatureChoices() {
   stockSupervisorOverview.hidden = false;
   stockFeaturePicker.hidden = false;
-  monthlyExpView.hidden = true;
   incomingExpView.hidden = true;
   animateEntrance(stockSupervisorOverview);
-  openMonthlyExpButton.setAttribute("aria-expanded", "false");
   openIncomingExpButton.setAttribute("aria-expanded", "false");
 }
 
 function showStockFeature(view, selectedButton) {
   stockSupervisorOverview.hidden = true;
   stockFeaturePicker.hidden = true;
-  monthlyExpView.hidden = view !== monthlyExpView;
   incomingExpView.hidden = view !== incomingExpView;
   animateEntrance(view);
-  openMonthlyExpButton.setAttribute("aria-expanded", String(selectedButton === openMonthlyExpButton));
   openIncomingExpButton.setAttribute("aria-expanded", String(selectedButton === openIncomingExpButton));
   view.querySelector("h3").focus();
 }
@@ -1035,13 +1018,11 @@ openStockAppButton.addEventListener("click", () => {
   showStockFeatureChoices();
   showAppView(stockSupervisorView, openStockAppButton);
 });
-openMonthlyExpButton.addEventListener("click", () => showStockFeature(monthlyExpView, openMonthlyExpButton));
 openIncomingExpButton.addEventListener("click", () => showStockFeature(incomingExpView, openIncomingExpButton));
 document.querySelectorAll("[data-stock-back]").forEach((button) => {
   button.addEventListener("click", () => {
-    const selectedButton = button.dataset.stockBack === "incoming" ? openIncomingExpButton : openMonthlyExpButton;
     showStockFeatureChoices();
-    selectedButton.focus();
+    openIncomingExpButton.focus();
   });
 });
 document.querySelectorAll("[data-app-back]").forEach((button) => {
@@ -1081,30 +1062,6 @@ function initializeExpYearSelect(select, selectedYear = 2026) {
   }
   select.replaceChildren(fragment);
 }
-
-function updateExpExpiration() {
-  if (!expManufactureDate || !expYears || !expMonths || !expResultDate || !expCalculationDetail) return;
-
-  const dateParts = readExpDateParts(expManufactureDate);
-  const years = Math.max(0, Number(expYears.value) || 0);
-  const months = Math.max(0, Number(expMonths.value) || 0);
-  if (!dateParts) return;
-
-  const originalYear = dateParts[0];
-  const originalMonth = dateParts[1] - 1;
-  const originalDay = dateParts[2];
-  const totalMonths = years * 12 + months;
-  const targetMonthIndex = originalMonth + totalMonths;
-  const targetYear = originalYear + Math.floor(targetMonthIndex / 12);
-  const targetMonth = ((targetMonthIndex % 12) + 12) % 12;
-  const lastDay = new Date(targetYear, targetMonth + 1, 0).getDate();
-  const expiration = new Date(targetYear, targetMonth, Math.min(originalDay, lastDay));
-
-  expResultDate.textContent = formatExpDate(expiration);
-  expCalculationDetail.textContent = `${formatExpDate(new Date(originalYear, originalMonth, originalDay))} + ${years ? `${years} ${translate("expYearLabel")} ` : ""}${months ? `${months} ${translate("expMonthLabel")}` : ""}`.trim();
-}
-
-expForm?.addEventListener("input", updateExpExpiration);
 
 const expDirectForm = document.getElementById("expDirectForm");
 const expDirectManufactureDate = {
@@ -1179,7 +1136,6 @@ window.setTimeout(() => {
 initializeWheel();
 setLanguage("km");
 setTheme(localStorage.getItem("dragon-calculator-theme") === "dark" ? "dark" : "light");
-updateExpExpiration();
 updateDirectExpExpiration();
 
 if ("serviceWorker" in navigator) {

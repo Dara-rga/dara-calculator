@@ -14,7 +14,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Dragon Calculator">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
-  <link rel="stylesheet" href="styles.css?v=intro-3s-2026-11">
+  <link rel="stylesheet" href="styles.css?v=remove-stock-monthly-exp-2026-11">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Dragon Calculator">
   <meta property="og:title" content="Dragon Calculator | កម្មវិធីគណនាតម្លៃ និងការលក់">
@@ -302,56 +302,10 @@
             </div>
           </header>
           <div class="stock-feature-grid" id="stockFeaturePicker">
-            <button class="stock-feature" id="openMonthlyExp" type="button" aria-controls="monthlyExpView" aria-expanded="false">
-              <span class="stock-feature-title" data-i18n="monthlyExpTitle">គណនាថ្ងៃផុតកំណត់ EXP</span>
-              <span class="app-status exp-ready-status" data-i18n="expReadyStatus">ត្រៀមប្រើ</span>
-            </button>
             <button class="stock-feature" id="openIncomingExp" type="button" aria-controls="incomingExpView" aria-expanded="false">
               <span class="stock-feature-title" data-i18n="incomingExpTitle">លក្ខណៈនៃការមើល EXP ដែលត្រូវទទួលលក់</span>
               <span class="app-status" data-i18n="stockFeatureStatus">កំពុង Update</span>
             </button>
-          </div>
-        </section>
-        <section class="app-card stock-feature-detail" id="monthlyExpView" aria-labelledby="monthlyExpViewTitle" hidden>
-          <button class="app-back-button" type="button" data-stock-back="monthly">
-            <span aria-hidden="true">←</span>
-            <span data-i18n="backToStockFeatures">ត្រឡប់ក្រោយ</span>
-          </button>
-          <header class="app-card-header">
-            <div>
-              <span class="eyebrow" data-i18n="stockSupervisorEyebrow">កម្មវិធីថ្មី</span>
-              <h3 id="monthlyExpViewTitle" tabindex="-1" data-i18n="monthlyExpTitle">គណនាថ្ងៃផុតកំណត់ EXP</h3>
-            </div>
-            <span class="app-status exp-ready-status" data-i18n="expReadyStatus">ត្រៀមប្រើ</span>
-          </header>
-          <form class="exp-calculator" id="expForm">
-            <label class="field">
-              <span data-i18n="manufactureDateLabel">ថ្ងៃផលិត EXP</span>
-              <span class="exp-date-fields">
-                <select id="expDay" aria-label="Day">
-                  <option value="1">01</option><option value="2">02</option><option value="3">03</option><option value="4">04</option><option value="5">05</option><option value="6">06</option><option value="7">07</option><option value="8">08</option><option value="9">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22" selected>22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option>
-                </select>
-                <select id="expMonth" aria-label="Month">
-                  <option value="1">01-Jan</option><option value="2">02-Feb</option><option value="3">03-Mar</option><option value="4">04-Apr</option><option value="5">05-May</option><option value="6">06-Jun</option><option value="7">07-Jul</option><option value="8">08-Aug</option><option value="9">09-Sep</option><option value="10">10-Oct</option><option value="11" selected>11-Nov</option><option value="12">12-Dec</option>
-                </select>
-                <select id="expYear" aria-label="Year"></select>
-              </span>
-            </label>
-            <div class="exp-duration-fields">
-              <label class="field">
-                <span data-i18n="expYearLabel">ចំនួនឆ្នាំ</span>
-                <input id="expYears" type="number" min="0" max="100" step="1" value="0" inputmode="numeric">
-              </label>
-              <label class="field">
-                <span data-i18n="expMonthLabel">ចំនួនខែ</span>
-                <input id="expMonths" type="number" min="0" max="1200" step="1" value="18" inputmode="numeric">
-              </label>
-            </div>
-          </form>
-          <div class="exp-result" aria-live="polite" aria-atomic="true">
-            <span data-i18n="expResultLabel">ថ្ងៃផុតកំណត់ EXP</span>
-            <strong id="expResultDate">22-May-2028</strong>
-            <small id="expCalculationDetail">22-Nov-2026 + 18 ខែ</small>
           </div>
         </section>
         <section class="app-card stock-feature-detail" id="incomingExpView" aria-labelledby="incomingExpViewTitle" hidden>
