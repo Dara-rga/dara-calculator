@@ -76,6 +76,7 @@ const expManufactureDate = document.getElementById("expYear") ? {
   month: document.getElementById("expMonth"),
   year: document.getElementById("expYear")
 } : null;
+initializeExpYearSelect(expManufactureDate?.year, 2026);
 const expYears = document.getElementById("expYears");
 const expMonths = document.getElementById("expMonths");
 const expResultDate = document.getElementById("expResultDate");
@@ -1067,6 +1068,20 @@ function readExpDateParts(dateFields) {
   return [year, month, day];
 }
 
+function initializeExpYearSelect(select, selectedYear = 2026) {
+  if (!select) return;
+
+  const fragment = document.createDocumentFragment();
+  for (let year = 1900; year <= 2100; year += 1) {
+    const option = document.createElement("option");
+    option.value = String(year);
+    option.textContent = String(year);
+    option.selected = year === selectedYear;
+    fragment.appendChild(option);
+  }
+  select.replaceChildren(fragment);
+}
+
 function updateExpExpiration() {
   if (!expManufactureDate || !expYears || !expMonths || !expResultDate || !expCalculationDetail) return;
 
@@ -1097,6 +1112,7 @@ const expDirectManufactureDate = {
   month: document.getElementById("expDirectMonth"),
   year: document.getElementById("expDirectYear")
 };
+initializeExpYearSelect(expDirectManufactureDate.year, 2026);
 const expDirectYears = document.getElementById("expDirectYears");
 const expDirectMonths = document.getElementById("expDirectMonths");
 const expDirectResultDate = document.getElementById("expDirectResultDate");
@@ -1156,9 +1172,9 @@ settingsDialog.addEventListener("keydown", (event) => {
 settingsDialog.addEventListener("click", (event) => {
   if (event.target === settingsDialog) settingsDialog.close();
 });
-document.getElementById("skipIntro").addEventListener("click", () => {
+window.setTimeout(() => {
   intro.classList.add("dismissed");
-});
+}, 1000);
 
 initializeWheel();
 setLanguage("km");

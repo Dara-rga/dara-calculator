@@ -14,7 +14,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Dragon Calculator">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
-  <link rel="stylesheet" href="styles.css?v=contact-links-2026-11">
+  <link rel="stylesheet" href="styles.css?v=intro-3s-2026-11">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Dragon Calculator">
   <meta property="og:title" content="Dragon Calculator | កម្មវិធីគណនាតម្លៃ និងការលក់">
@@ -42,7 +42,6 @@
     <div class="intro-content">
       <h1 id="introWelcome">សូមស្វាគមន៍មកកាន់ Dragon Calculator!</h1>
       <p data-i18n="introCredit">អ្នកបង្កើត · Dragon Calculator</p>
-      <button class="skip-intro" id="skipIntro" type="button" data-i18n="skipIntro">ចូលប្រើម៉ាស៊ីនគិតលេខ</button>
     </div>
   </section>
 
@@ -206,7 +205,7 @@
             <select id="expDirectMonth" aria-label="Month">
               <option value="1">01-Jan</option><option value="2">02-Feb</option><option value="3">03-Mar</option><option value="4">04-Apr</option><option value="5">05-May</option><option value="6">06-Jun</option><option value="7">07-Jul</option><option value="8">08-Aug</option><option value="9">09-Sep</option><option value="10">10-Oct</option><option value="11" selected>11-Nov</option><option value="12">12-Dec</option>
             </select>
-            <input id="expDirectYear" type="number" min="1900" max="2100" step="1" value="2026" inputmode="numeric" aria-label="Year">
+            <select id="expDirectYear" aria-label="Year"></select>
           </span>
         </label>
         <div class="exp-duration-fields">
@@ -335,7 +334,7 @@
                 <select id="expMonth" aria-label="Month">
                   <option value="1">01-Jan</option><option value="2">02-Feb</option><option value="3">03-Mar</option><option value="4">04-Apr</option><option value="5">05-May</option><option value="6">06-Jun</option><option value="7">07-Jul</option><option value="8">08-Aug</option><option value="9">09-Sep</option><option value="10">10-Oct</option><option value="11" selected>11-Nov</option><option value="12">12-Dec</option>
                 </select>
-                <input id="expYear" type="number" min="1900" max="2100" step="1" value="2026" inputmode="numeric" aria-label="Year">
+                <select id="expYear" aria-label="Year"></select>
               </span>
             </label>
             <div class="exp-duration-fields">

@@ -1967,12 +1967,12 @@ body {
 
   #expDirectForm.exp-calculator,
   #expForm.exp-calculator {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
   }
 
   #expPanel .exp-date-fields,
   #monthlyExpView .exp-date-fields {
-    grid-template-columns: 62px minmax(112px, 1.25fr) 76px;
+    grid-template-columns: 64px minmax(112px, 1fr) 92px;
     gap: 6px;
   }
 
