@@ -2038,3 +2038,56 @@ body {
   -webkit-text-fill-color: #10233f !important;
   border: 0;
 }
+
+/* Dark-mode stock feature card contrast */
+:root[data-theme="dark"] .stock-feature {
+  border-color: #557692;
+  background: #26394a;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+}
+
+:root[data-theme="dark"] .stock-feature:hover {
+  border-color: #72bdf2;
+  background: #2d4053;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.28);
+}
+
+:root[data-theme="dark"] .stock-feature-title {
+  color: #edf5ff;
+}
+
+:root[data-theme="dark"] .stock-feature .app-status {
+  border-color: #557692;
+  color: #8ed0ff;
+  background: #263c50;
+}
+
+/* Dark-mode Lucky Wheel app card */
+:root[data-theme="dark"] .app-choice {
+  border-color: #557692;
+  background: #26394a;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+}
+
+:root[data-theme="dark"] .app-choice:hover {
+  border-color: #72bdf2;
+  background: #2d4053;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.28);
+}
+
+:root[data-theme="dark"] .app-choice-copy strong {
+  color: #edf5ff;
+}
+
+:root[data-theme="dark"] .app-choice-copy small {
+  color: #bacbda;
+}
+
+:root[data-theme="dark"] .app-choice-arrow {
+  color: #a8c7fa;
+}
+
+:root[data-theme="dark"] .wheel-choice-icon {
+  color: #a8c7fa;
+  background: #263b57;
+}
