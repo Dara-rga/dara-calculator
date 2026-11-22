@@ -14,7 +14,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Dragon Calculator">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
-  <link rel="stylesheet" href="styles.css?v=rename-stock-exp-title-2026-11">
+  <link rel="stylesheet" href="styles.css?v=lottery-category-options-2026-11">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Dragon Calculator">
   <meta property="og:title" content="Dragon Calculator | កម្មវិធីគណនាតម្លៃ និងការលក់">
@@ -317,6 +317,17 @@
             </label>
             <button class="primary-button" id="lotteryCheckButton" type="submit" data-i18n="lotteryCheckButton" disabled>ឆែកលទ្ធផល</button>
           </form>
+          <div class="lottery-category-picker">
+            <button class="lottery-category-button" id="lotteryCategoryButton" type="button" aria-haspopup="menu" aria-expanded="false">
+              <span data-i18n="lotteryCategoryLabel">ជ្រើសប្រភេទ</span>
+              <span id="lotteryCategoryName" data-i18n="lotteryCategoryNone">មិនទាន់ជ្រើស</span>
+              <span aria-hidden="true">▾</span>
+            </button>
+            <div class="lottery-category-menu" id="lotteryCategoryMenu" role="menu" hidden>
+              <button type="button" role="menuitem" data-lottery-category="bottle" data-i18n="lotteryBottle">ប្រភេទដប</button>
+              <button type="button" role="menuitem" data-lottery-category="soap" data-i18n="lotterySoap">ប្រភេទសាប៊ូ</button>
+            </div>
+          </div>
           <div class="lottery-result" id="lotteryResult" aria-live="polite">
             <span data-i18n="lotteryPending">មុខងារនេះនឹងអាប់ដេតឆាប់ៗនេះ។</span>
           </div>

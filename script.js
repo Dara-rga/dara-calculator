@@ -129,6 +129,12 @@ const translations = {
     lotteryPlaceholder: "ឧ. 123456",
     lotteryCheckButton: "ឆែកលទ្ធផល",
     lotteryPending: "មុខងារនេះនឹងអាប់ដេតឆាប់ៗនេះ។",
+    lotteryCategoryLabel: "ជ្រើសប្រភេទ",
+    lotteryCategoryNone: "មិនទាន់ជ្រើស",
+    lotteryBottle: "ប្រភេទដប",
+    lotterySoap: "ប្រភេទសាប៊ូ",
+    lotteryBottlePending: "បានជ្រើសប្រភេទដប។ ការគណនានឹងអាប់ដេតពេលក្រោយ។",
+    lotterySoapPending: "បានជ្រើសប្រភេទសាប៊ូ។ ការគណនានឹងអាប់ដេតពេលក្រោយ។",
     wheelEyebrow: "ហ្គេមសំណាង",
     wheelTitle: "កងបង្វិលសំណាង",
     wheelDescription: "បញ្ចូលឈ្មោះអ្នកចូលរួមរហូតដល់ 30 នាក់។ អ្នកឈ្នះនឹងត្រូវដកចេញពីកងបង្វិល។",
@@ -274,6 +280,12 @@ const translations = {
     lotteryPlaceholder: "e.g. 123456",
     lotteryCheckButton: "Check result",
     lotteryPending: "This feature will be updated soon.",
+    lotteryCategoryLabel: "Select category",
+    lotteryCategoryNone: "Not selected",
+    lotteryBottle: "Bottle type",
+    lotterySoap: "Soap type",
+    lotteryBottlePending: "Bottle type selected. Calculation will be updated later.",
+    lotterySoapPending: "Soap type selected. Calculation will be updated later.",
     wheelEyebrow: "LUCKY GAME",
     wheelTitle: "Lucky Spin Wheel",
     wheelDescription: "Enter up to 30 participant names. Each winner is removed from the wheel.",
@@ -419,6 +431,12 @@ const translations = {
     lotteryPlaceholder: "例如：123456",
     lotteryCheckButton: "查询结果",
     lotteryPending: "此功能即将更新。",
+    lotteryCategoryLabel: "选择类型",
+    lotteryCategoryNone: "尚未选择",
+    lotteryBottle: "瓶装类型",
+    lotterySoap: "肥皂类型",
+    lotteryBottlePending: "已选择瓶装类型。计算功能将在稍后更新。",
+    lotterySoapPending: "已选择肥皂类型。计算功能将在稍后更新。",
     wheelEyebrow: "幸运游戏",
     wheelTitle: "幸运转盘",
     wheelDescription: "最多输入 30 位参与者的姓名。每位获胜者都会从转盘中移除。",
@@ -546,6 +564,7 @@ function setLanguage(language) {
   document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
     element.setAttribute("placeholder", translate(element.dataset.i18nPlaceholder));
   });
+  updateLotteryCategoryName();
   document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
     element.setAttribute("aria-label", translate(element.dataset.i18nAriaLabel));
   });
@@ -1071,6 +1090,11 @@ document.querySelectorAll("[data-app-back]").forEach((button) => {
 
 const lotteryCheckForm = document.getElementById("lotteryCheckForm");
 const lotteryNumber = document.getElementById("lotteryNumber");
+const lotteryCategoryButton = document.getElementById("lotteryCategoryButton");
+const lotteryCategoryMenu = document.getElementById("lotteryCategoryMenu");
+const lotteryCategoryName = document.getElementById("lotteryCategoryName");
+const lotteryResult = document.getElementById("lotteryResult");
+let selectedLotteryCategory = "";
 
 lotteryNumber?.addEventListener("input", () => {
   lotteryNumber.value = lotteryNumber.value.replace(/\D/g, "");
@@ -1078,6 +1102,47 @@ lotteryNumber?.addEventListener("input", () => {
 
 lotteryCheckForm?.addEventListener("submit", (event) => {
   event.preventDefault();
+});
+
+function closeLotteryCategoryMenu() {
+  lotteryCategoryMenu.hidden = true;
+  lotteryCategoryButton.setAttribute("aria-expanded", "false");
+}
+
+function updateLotteryCategoryName() {
+  if (!lotteryCategoryName) return;
+  lotteryCategoryName.textContent = translate(
+    selectedLotteryCategory === "bottle"
+      ? "lotteryBottle"
+      : selectedLotteryCategory === "soap"
+        ? "lotterySoap"
+        : "lotteryCategoryNone"
+  );
+}
+
+lotteryCategoryButton?.addEventListener("click", () => {
+  const willOpen = lotteryCategoryMenu.hidden;
+  lotteryCategoryMenu.hidden = !willOpen;
+  lotteryCategoryButton.setAttribute("aria-expanded", String(willOpen));
+});
+
+document.querySelectorAll("[data-lottery-category]").forEach((option) => {
+  option.addEventListener("click", () => {
+    selectedLotteryCategory = option.dataset.lotteryCategory;
+    updateLotteryCategoryName();
+    lotteryResult.textContent = translate(
+      selectedLotteryCategory === "bottle"
+        ? "lotteryBottlePending"
+        : "lotterySoapPending"
+    );
+    closeLotteryCategoryMenu();
+  });
+});
+
+document.addEventListener("click", (event) => {
+  if (!event.target.closest(".lottery-category-picker")) {
+    closeLotteryCategoryMenu();
+  }
 });
 
 function formatExpDate(date) {
