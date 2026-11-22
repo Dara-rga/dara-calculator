@@ -1954,3 +1954,45 @@ body {
     min-width: 132px;
   }
 }
+
+/* Maximum contrast for EXP fields on dark mobile screens */
+:root[data-theme="dark"] #expPanel,
+:root[data-theme="dark"] #expPanel h2,
+:root[data-theme="dark"] #expPanel .section-description,
+:root[data-theme="dark"] #expPanel .field,
+:root[data-theme="dark"] #expPanel .field > span,
+:root[data-theme="dark"] #expPanel .exp-result,
+:root[data-theme="dark"] #expPanel .exp-result span,
+:root[data-theme="dark"] #expPanel .exp-result small {
+  color: #ffffff !important;
+  opacity: 1 !important;
+  text-shadow: none;
+}
+
+:root[data-theme="dark"] #expPanel .exp-date-fields select,
+:root[data-theme="dark"] #expPanel .exp-date-fields input,
+:root[data-theme="dark"] #expPanel .exp-duration-fields input {
+  border: 2px solid #6f91ac !important;
+  color: #ffffff !important;
+  background: #2d4053 !important;
+  -webkit-text-fill-color: #ffffff !important;
+  text-shadow: none;
+}
+
+:root[data-theme="dark"] #expPanel .exp-result {
+  border: 2px solid #5b748b;
+  background: #1d3039;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+}
+
+:root[data-theme="dark"] #expPanel .exp-result strong {
+  color: #63d7ae !important;
+  -webkit-text-fill-color: #63d7ae !important;
+}
+
+:root[data-theme="dark"] #expPanel .exp-calculate-button {
+  color: #10233f !important;
+  background: #72bdf2 !important;
+  -webkit-text-fill-color: #10233f !important;
+  border: 0;
+}
