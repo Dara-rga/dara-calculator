@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10233f" id="themeColor">
+  <title>Dragon Calculator | កម្មវិធីគណនាតម្លៃ និងការលក់</title>
+  <meta name="description" content="Dragon Calculator គឺជាកម្មវិធីគណនាឥតគិតថ្លៃ ជួយគណនាតម្លៃបញ្ចុះ គោលដៅលក់ និងចំណេញ ឬខាត ងាយប្រើជាភាសាខ្មែរ។">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://dara-rga.github.io/dara-calculator/">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=dragon-1">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Dragon Calculator">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css?v=exp-year-title-2026-11">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Dragon Calculator">
+  <meta property="og:title" content="Dragon Calculator | កម្មវិធីគណនាតម្លៃ និងការលក់">
+  <meta property="og:description" content="គណនាតម្លៃបញ្ចុះ គោលដៅលក់ និងចំណេញ ឬខាត ជាភាសាខ្មែរ ងាយស្រួល និងឥតគិតថ្លៃ។">
+  <meta property="og:url" content="https://dara-rga.github.io/dara-calculator/">
+  <meta property="og:locale" content="km_KH">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Dragon Calculator",
+      "alternateName": "កម្មវិធីគណនា Dragon Calculator",
+      "url": "https://dara-rga.github.io/dara-calculator/",
+      "description": "កម្មវិធីឥតគិតថ្លៃសម្រាប់គណនាតម្លៃបញ្ចុះ គោលដៅលក់ និងចំណេញ ឬខាត។",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Any",
+      "inLanguage": ["km", "en", "zh"],
+      "isAccessibleForFree": true
+    }
+  </script>
+</head>
+<body>
+  <section class="intro" id="intro" aria-label="ស្វាគមន៍" data-i18n-aria-label="welcome">
+    <div class="intro-content">
+      <h1 id="introWelcome">សូមស្វាគមន៍មកកាន់ Dragon Calculator!</h1>
+      <p data-i18n="introCredit">អ្នកបង្កើត · Dragon Calculator</p>
+      <button class="skip-intro" id="skipIntro" type="button" data-i18n="skipIntro">ចូលប្រើម៉ាស៊ីនគិតលេខ</button>
+    </div>
+  </section>
+
+  <main class="calculator" aria-label="កម្មវិធីគណនាតម្លៃ និងការលក់" data-i18n-aria-label="mainLabel">
+    <header class="brand">
+      <span class="brand-name">
+        <span class="brand-icon" aria-hidden="true">🐉</span>
+        <span class="brand-copy">
+          <strong>DRAGON CALCULATOR</strong>
+          <small id="brandName">មួយនាទីក៏មានតម្លៃ</small>
+          <small class="brand-tagline" data-i18n="brandTagline">ភាពអាចទៅរួច</small>
+        </span>
+      </span>
+      <div class="brand-actions">
+        <button class="about-button" id="settingsButton" type="button" aria-haspopup="dialog" aria-controls="settingsDialog">
+          <span class="info-icon" aria-hidden="true">⚙</span>
+          <span data-i18n="settingsButton">ការកំណត់</span>
+        </button>
+        <button class="about-button" id="aboutButton" type="button" aria-haspopup="dialog">
+          <span class="info-icon" aria-hidden="true">i</span>
+          <span data-i18n="aboutButton">អំពីកម្មវិធី</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="function-toolbar">
+      <div class="tool-tabs" role="tablist" aria-label="ប្រភេទមុខងារ" data-i18n-aria-label="toolTabList">
+        <button class="tool-tab active" id="discountTab" type="button" role="tab" aria-selected="true" aria-controls="discountPanel">
+          <span class="tab-icon" aria-hidden="true">％</span>
+          <span class="tab-copy"><span data-i18n="discountTab">បញ្ចុះតម្លៃ</span><small data-i18n="discountTabNote">Discount price</small></span>
+        </button>
+        <button class="tool-tab" id="targetTab" type="button" role="tab" aria-selected="false" aria-controls="targetPanel">
+          <span class="tab-icon" aria-hidden="true">◎</span>
+          <span class="tab-copy"><span data-i18n="targetTab">គោលដៅលក់</span><small data-i18n="targetTabNote">Sales target</small></span>
+        </button>
+        <button class="tool-tab" id="profitTab" type="button" role="tab" aria-selected="false" aria-controls="profitPanel">
+          <span class="tab-icon" aria-hidden="true">↗</span>
+          <span class="tab-copy"><span data-i18n="profitTab">ចំណេញ/ខាត</span><small data-i18n="profitTabNote">Profit &amp; loss</small></span>
+        </button>
+        <button class="tool-tab" id="expTab" type="button" role="tab" aria-selected="false" aria-controls="expPanel">
+          <span class="tab-icon" aria-hidden="true">EXP</span>
+          <span class="tab-copy"><span data-i18n="expTab">ការគណនា EXP ដែលបូកឆ្នាំ</span><small data-i18n="expTabNote">Expiration date</small></span>
+        </button>
+        <button class="tool-tab" id="appsTab" type="button" role="tab" aria-selected="false" aria-controls="appsPanel">
+          <span class="tab-icon" aria-hidden="true">▦</span>
+          <span class="tab-copy"><span data-i18n="appsTab">កម្មវិធីផ្សេងៗ</span><small data-i18n="appsTabNote">Other apps</small></span>
+        </button>
+      </div>
+    </div>
+
+    <section class="tool-panel" id="discountPanel" role="tabpanel" aria-labelledby="discountTab">
+      <h2 data-i18n="discountHeading">គណនាតម្លៃក្រោយបញ្ចុះ</h2>
+      <p class="section-description" data-i18n="discountDescription">បញ្ចូលតម្លៃដើម និងភាគរយបញ្ចុះតម្លៃ</p>
+      <form class="tool-form" id="discountForm">
+        <label class="field">
+          <span data-i18n="originalPrice">តម្លៃដើម ($)</span>
+          <input id="originalPrice" type="number" min="0" step="any" value="50" inputmode="decimal" required>
+        </label>
+        <label class="field">
+          <span data-i18n="discountRate">បញ្ចុះតម្លៃ (%)</span>
+          <input id="discountRate" type="number" min="0" max="100" step="any" value="50" inputmode="decimal" required>
+        </label>
+      </form>
+      <div class="result-card" aria-live="polite" aria-atomic="true">
+        <span class="result-label" data-i18n="discountResultLabel">តម្លៃក្រោយបញ្ចុះ</span>
+        <strong class="result-value" id="discountedPrice">$25</strong>
+        <span class="result-detail" id="discountDetail">បញ្ចុះតម្លៃបាន $25</span>
+        <div class="calculation-step">
+          <span data-i18n="calculationLabel">របៀបគណនា</span>
+          <code id="discountCalculation">$50 × 50% = $25 បញ្ចុះ; $50 − $25 = $25</code>
+        </div>
+      </div>
+    </section>
+
+    <section class="tool-panel" id="targetPanel" role="tabpanel" aria-labelledby="targetTab" hidden>
+      <h2 data-i18n="targetHeading">គណនាភាគរយសម្រេចគោលដៅលក់</h2>
+      <p class="section-description" data-i18n="targetDescription">ប្រៀបធៀបការលក់ជាក់ស្តែងជាមួយគោលដៅ</p>
+      <form class="tool-form" id="targetForm">
+        <label class="field">
+          <span data-i18n="salesTarget">គោលដៅលក់ ($)</span>
+          <input id="salesTarget" type="number" min="0.01" step="any" value="50000" inputmode="decimal" required>
+        </label>
+        <label class="field">
+          <span data-i18n="actualSales">លក់បាន ($)</span>
+          <input id="actualSales" type="number" min="0" step="any" value="40000" inputmode="decimal" required>
+        </label>
+      </form>
+      <div class="result-card" aria-live="polite" aria-atomic="true">
+        <span class="result-label" data-i18n="targetResultLabel">សម្រេចបាន</span>
+        <strong class="result-value" id="targetPercent">80%</strong>
+        <div class="progress-track" role="progressbar" aria-label="សម្រេចគោលដៅ" data-i18n-aria-label="progressLabel" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80">
+          <div class="progress-fill" id="targetProgress"></div>
+        </div>
+        <span class="result-detail" id="targetDetail">នៅសល់ $10,000 ដើម្បីដល់គោលដៅ</span>
+        <div class="calculation-step">
+          <span data-i18n="calculationLabel">របៀបគណនា</span>
+          <code id="targetCalculation">$40,000 ÷ $50,000 × 100 = 80%</code>
+        </div>
+      </div>
+    </section>
+
+    <section class="tool-panel" id="profitPanel" role="tabpanel" aria-labelledby="profitTab" hidden>
+      <h2 data-i18n="profitHeading">គណនាចំណេញ ឬខាតក្រោយបញ្ចុះ</h2>
+      <p class="section-description" data-i18n="profitDescription">ប្រៀបធៀបតម្លៃលក់ក្រោយបញ្ចុះនឹងតម្លៃទិញចូល</p>
+      <form class="tool-form" id="profitForm">
+        <label class="field">
+          <span data-i18n="purchasePrice">តម្លៃទិញចូល ($)</span>
+          <input id="purchasePrice" type="number" min="0" step="0.01" value="50" inputmode="decimal" required>
+        </label>
+        <label class="field">
+          <span data-i18n="salePrice">តម្លៃលក់ចេញ ($)</span>
+          <input id="salePrice" type="number" min="0" step="0.01" value="60" inputmode="decimal" required>
+        </label>
+        <fieldset class="discount-mode">
+          <legend data-i18n="discountMode">ជ្រើសរើសរបៀបបញ្ចុះ</legend>
+          <label class="mode-option selected">
+            <input type="radio" name="profitDiscountType" value="percent" checked>
+            <span class="mode-symbol">%</span>
+            <span class="mode-copy"><strong data-i18n="percentMode">ភាគរយ</strong><small data-i18n="percentModeExample">ឧ. បញ្ចុះ 50%</small></span>
+          </label>
+          <label class="mode-option">
+            <input type="radio" name="profitDiscountType" value="amount">
+            <span class="mode-symbol">$</span>
+            <span class="mode-copy"><strong data-i18n="amountMode">ចំនួនដុល្លារ</strong><small data-i18n="amountModeExample">ឧ. បញ្ចុះ $30</small></span>
+          </label>
+        </fieldset>
+        <label class="field" id="profitPercentField">
+          <span data-i18n="profitPercentLabel">បញ្ចុះតម្លៃ (%)</span>
+          <input id="profitDiscountRate" type="number" min="0" max="100" step="any" value="50" inputmode="decimal" required>
+        </label>
+        <label class="field" id="profitAmountField" hidden>
+          <span data-i18n="profitAmountLabel">បញ្ចុះតម្លៃ ($)</span>
+          <input id="profitDiscountAmount" type="number" min="0" max="60" step="0.01" value="30" inputmode="decimal" disabled required>
+        </label>
+      </form>
+      <div class="result-card" aria-live="polite" aria-atomic="true">
+        <span class="result-label" data-i18n="profitResultLabel">លទ្ធផលក្រោយបញ្ចុះ</span>
+        <strong class="result-value loss" id="profitLossResult">ខាត $20</strong>
+        <span class="result-detail" id="profitSalePrice">តម្លៃលក់ក្រោយបញ្ចុះ៖ $30</span>
+        <div class="calculation-step">
+          <span data-i18n="calculationLabel">របៀបគណនា</span>
+          <code id="profitCalculation">$60 × (1 − 50%) = $30; $30 − $50 = −$20 (ខាត $20)</code>
+        </div>
+      </div>
+    </section>
+
+    <section class="tool-panel" id="expPanel" role="tabpanel" aria-labelledby="expTab" hidden>
+      <h2 data-i18n="monthlyExpTitle">គណនាថ្ងៃផុតកំណត់ EXP</h2>
+      <p class="section-description" data-i18n="expDescription">បញ្ចូលថ្ងៃផលិត EXP និងរយៈពេលដើម្បីរកថ្ងៃផុតកំណត់</p>
+      <form class="exp-calculator" id="expDirectForm">
+        <label class="field">
+          <span data-i18n="manufactureDateLabel">ថ្ងៃផលិត EXP</span>
+          <span class="exp-date-fields">
+            <select id="expDirectDay" aria-label="Day">
+              <option value="1">01</option><option value="2">02</option><option value="3">03</option><option value="4">04</option><option value="5">05</option><option value="6">06</option><option value="7">07</option><option value="8">08</option><option value="9">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22" selected>22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option>
+            </select>
+            <select id="expDirectMonth" aria-label="Month">
+              <option value="1">01-Jan</option><option value="2">02-Feb</option><option value="3">03-Mar</option><option value="4">04-Apr</option><option value="5">05-May</option><option value="6">06-Jun</option><option value="7">07-Jul</option><option value="8">08-Aug</option><option value="9">09-Sep</option><option value="10">10-Oct</option><option value="11" selected>11-Nov</option><option value="12">12-Dec</option>
+            </select>
+            <input id="expDirectYear" type="number" min="1900" max="2100" step="1" value="2026" inputmode="numeric" aria-label="Year">
+          </span>
+        </label>
+        <div class="exp-duration-fields">
+          <label class="field">
+            <span data-i18n="expYearLabel">ចំនួនឆ្នាំ</span>
+            <input id="expDirectYears" type="number" min="0" max="100" step="1" value="0" inputmode="numeric">
+          </label>
+          <label class="field">
+            <span data-i18n="expMonthLabel">ចំនួនខែ</span>
+            <input id="expDirectMonths" type="number" min="0" max="1200" step="1" value="18" inputmode="numeric">
+          </label>
+        </div>
+        <button class="primary-button exp-calculate-button" id="expCalculateButton" type="submit" data-i18n="calculateExpButton">គណនា</button>
+      </form>
+      <div class="exp-result" aria-live="polite" aria-atomic="true">
+        <span data-i18n="expResultLabel">ថ្ងៃផុតកំណត់ EXP</span>
+        <strong id="expDirectResultDate">22-May-2028</strong>
+        <small id="expDirectCalculationDetail">22-Nov-2026 + 18 ខែ</small>
+      </div>
+    </section>
+
+    <section class="tool-panel" id="appsPanel" role="tabpanel" aria-labelledby="appsTab" hidden>
+      <h2 id="appsHeading" data-i18n="appsHeading" hidden>កម្មវិធីផ្សេងៗ</h2>
+      <p class="section-description" id="appsDescription" data-i18n="appsDescription" hidden>ជ្រើសរើសកម្មវិធីដែលអ្នកចង់ប្រើ</p>
+      <div class="app-picker" id="appPicker" role="group" data-i18n-aria-label="appsHeading">
+        <button class="app-choice" id="openWheelApp" type="button" aria-controls="luckyWheelView" aria-expanded="false">
+          <span class="app-choice-icon wheel-choice-icon" aria-hidden="true">↻</span>
+          <span class="app-choice-copy">
+            <strong data-i18n="wheelTitle">កងបង្វិលសំណាង</strong>
+            <small data-i18n="wheelDescription">បញ្ចូលឈ្មោះអ្នកចូលរួមរហូតដល់ 30 នាក់។ អ្នកឈ្នះនឹងត្រូវដកចេញពីកងបង្វិល។</small>
+          </span>
+          <span class="app-choice-arrow" aria-hidden="true">›</span>
+        </button>
+        <button class="app-choice" id="openStockApp" type="button" aria-controls="stockSupervisorView" aria-expanded="false">
+          <span class="app-choice-icon stock-choice-icon" aria-hidden="true">▦</span>
+          <span class="app-choice-copy">
+            <strong data-i18n="stockSupervisorTitle">ស្វែងយល់អំពីថ្ងៃផុតកំណត់ EXP</strong>
+            <small data-i18n="stockSupervisorDescription">មុខងារនេះកំពុងរៀបចំ។ សូមរង់ចាំការអាប់ដេតបន្ទាប់។</small>
+          </span>
+          <span class="app-choice-arrow" aria-hidden="true">›</span>
+        </button>
+      </div>
+
+      <div class="app-view" id="luckyWheelView" hidden>
+        <button class="app-back-button" type="button" data-app-back data-i18n="backToApps">ត្រឡប់ទៅជម្រើសមុខងារ</button>
+        <section class="app-card lucky-wheel-card" aria-labelledby="wheelTitle">
+          <header class="app-card-header">
+            <div>
+              <span class="eyebrow" data-i18n="wheelEyebrow">ហ្គេមសំណាង</span>
+              <h3 id="wheelTitle" data-i18n="wheelTitle">កងបង្វិលសំណាង</h3>
+              <p data-i18n="wheelDescription">បញ្ចូលឈ្មោះអ្នកចូលរួមរហូតដល់ 30 នាក់។ អ្នកឈ្នះនឹងត្រូវដកចេញពីកងបង្វិល។</p>
+            </div>
+          </header>
+          <div class="wheel-layout">
+            <div class="wheel-setup">
+              <label class="field" for="wheelNames">
+                <span data-i18n="wheelNamesLabel">បញ្ជីឈ្មោះ (មួយឈ្មោះក្នុងមួយបន្ទាត់)</span>
+                <textarea id="wheelNames" rows="8" maxlength="2500" spellcheck="false" aria-describedby="wheelNamesHelp"></textarea>
+              </label>
+              <p class="wheel-help" id="wheelNamesHelp" data-i18n="wheelNamesHelp">អាចបញ្ចូលបានរហូតដល់ 30 ឈ្មោះ។ ឈ្មោះដែលឈ្នះរួច មិនអាចបញ្ចូលវិញបានទេ។</p>
+              <div class="wheel-actions">
+                <button class="primary-button" id="saveWheelNames" type="button" data-i18n="wheelSaveNames">រក្សាទុកបញ្ជីឈ្មោះ</button>
+                <button class="secondary-button" id="resetWheel" type="button" data-i18n="wheelReset">ចាប់ផ្ដើមជុំថ្មី</button>
+              </div>
+              <p class="wheel-status" id="wheelStatus" aria-live="polite" aria-atomic="true"></p>
+            </div>
+            <div class="wheel-game">
+              <div class="wheel-frame">
+                <span class="wheel-pointer" aria-hidden="true">▼</span>
+                <canvas id="wheelCanvas" width="500" height="500" role="img"></canvas>
+              </div>
+              <button class="primary-button spin-button" id="spinWheel" type="button" data-i18n="wheelSpin" disabled>បង្វិលឥឡូវនេះ</button>
+              <p class="wheel-remaining" id="wheelRemaining" aria-live="polite"></p>
+            </div>
+          </div>
+          <section class="winner-history" aria-labelledby="wheelWinnersHeading">
+            <h4 id="wheelWinnersHeading" data-i18n="wheelWinnersHeading">ឈ្មោះអ្នកឈ្នះ</h4>
+            <ol id="wheelWinners"></ol>
+          </section>
+        </section>
+      </div>
+
+      <div class="app-view" id="stockSupervisorView" hidden>
+        <button class="app-back-button" type="button" data-app-back>
+          <span aria-hidden="true">←</span>
+          <span data-i18n="backToApps">ត្រឡប់ទៅជម្រើសមុខងារ</span>
+        </button>
+        <section class="app-card stock-card" id="stockSupervisorOverview" aria-labelledby="stockSupervisorTitle">
+          <header class="app-card-header">
+            <div>
+              <span class="eyebrow" data-i18n="stockSupervisorEyebrow">កម្មវិធីថ្មី</span>
+              <h3 id="stockSupervisorTitle" data-i18n="stockSupervisorTitle">ស្វែងយល់អំពីថ្ងៃផុតកំណត់ EXP</h3>
+              <p data-i18n="stockSupervisorDescription">មុខងារនេះកំពុងរៀបចំ។ សូមរង់ចាំការអាប់ដេតបន្ទាប់។</p>
+            </div>
+          </header>
+          <div class="stock-feature-grid" id="stockFeaturePicker">
+            <button class="stock-feature" id="openMonthlyExp" type="button" aria-controls="monthlyExpView" aria-expanded="false">
+              <span class="stock-feature-title" data-i18n="monthlyExpTitle">គណនាថ្ងៃផុតកំណត់ EXP</span>
+              <span class="app-status exp-ready-status" data-i18n="expReadyStatus">ត្រៀមប្រើ</span>
+            </button>
+            <button class="stock-feature" id="openIncomingExp" type="button" aria-controls="incomingExpView" aria-expanded="false">
+              <span class="stock-feature-title" data-i18n="incomingExpTitle">លក្ខណៈនៃការមើល EXP ដែលត្រូវទទួលលក់</span>
+              <span class="app-status" data-i18n="stockFeatureStatus">កំពុង Update</span>
+            </button>
+          </div>
+        </section>
+        <section class="app-card stock-feature-detail" id="monthlyExpView" aria-labelledby="monthlyExpViewTitle" hidden>
+          <button class="app-back-button" type="button" data-stock-back="monthly">
+            <span aria-hidden="true">←</span>
+            <span data-i18n="backToStockFeatures">ត្រឡប់ក្រោយ</span>
+          </button>
+          <header class="app-card-header">
+            <div>
+              <span class="eyebrow" data-i18n="stockSupervisorEyebrow">កម្មវិធីថ្មី</span>
+              <h3 id="monthlyExpViewTitle" tabindex="-1" data-i18n="monthlyExpTitle">គណនាថ្ងៃផុតកំណត់ EXP</h3>
+            </div>
+            <span class="app-status exp-ready-status" data-i18n="expReadyStatus">ត្រៀមប្រើ</span>
+          </header>
+          <form class="exp-calculator" id="expForm">
+            <label class="field">
+              <span data-i18n="manufactureDateLabel">ថ្ងៃផលិត EXP</span>
+              <span class="exp-date-fields">
+                <select id="expDay" aria-label="Day">
+                  <option value="1">01</option><option value="2">02</option><option value="3">03</option><option value="4">04</option><option value="5">05</option><option value="6">06</option><option value="7">07</option><option value="8">08</option><option value="9">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22" selected>22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option>
+                </select>
+                <select id="expMonth" aria-label="Month">
+                  <option value="1">01-Jan</option><option value="2">02-Feb</option><option value="3">03-Mar</option><option value="4">04-Apr</option><option value="5">05-May</option><option value="6">06-Jun</option><option value="7">07-Jul</option><option value="8">08-Aug</option><option value="9">09-Sep</option><option value="10">10-Oct</option><option value="11" selected>11-Nov</option><option value="12">12-Dec</option>
+                </select>
+                <input id="expYear" type="number" min="1900" max="2100" step="1" value="2026" inputmode="numeric" aria-label="Year">
+              </span>
+            </label>
+            <div class="exp-duration-fields">
+              <label class="field">
+                <span data-i18n="expYearLabel">ចំនួនឆ្នាំ</span>
+                <input id="expYears" type="number" min="0" max="100" step="1" value="0" inputmode="numeric">
+              </label>
+              <label class="field">
+                <span data-i18n="expMonthLabel">ចំនួនខែ</span>
+                <input id="expMonths" type="number" min="0" max="1200" step="1" value="18" inputmode="numeric">
+              </label>
+            </div>
+          </form>
+          <div class="exp-result" aria-live="polite" aria-atomic="true">
+            <span data-i18n="expResultLabel">ថ្ងៃផុតកំណត់ EXP</span>
+            <strong id="expResultDate">22-May-2028</strong>
+            <small id="expCalculationDetail">22-Nov-2026 + 18 ខែ</small>
+          </div>
+        </section>
+        <section class="app-card stock-feature-detail" id="incomingExpView" aria-labelledby="incomingExpViewTitle" hidden>
+          <button class="app-back-button" type="button" data-stock-back="incoming">
+            <span aria-hidden="true">←</span>
+            <span data-i18n="backToStockFeatures">ត្រឡប់ក្រោយ</span>
+          </button>
+          <header class="app-card-header">
+            <div>
+              <span class="eyebrow" data-i18n="stockSupervisorEyebrow">កម្មវិធីថ្មី</span>
+              <h3 id="incomingExpViewTitle" tabindex="-1" data-i18n="incomingExpTitle">លក្ខណៈនៃការមើល EXP ដែលត្រូវទទួលលក់</h3>
+            </div>
+            <span class="app-status" data-i18n="stockFeatureStatus">កំពុង Update</span>
+          </header>
+        </section>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <span data-i18n="copyrightNotice">© 2026 មួយនាទីក៏មានតម្លៃ · Dragon Calculator</span>
+      <span class="site-version">
+        <span data-i18n="websiteVersionLabel">កំណែគេហទំព័រ</span>
+        <strong>1.00.00</strong>
+      </span>
+    </footer>
+  </main>
+
+  <dialog class="about-dialog" id="aboutDialog" aria-labelledby="aboutTitle">
+    <img class="about-profile-image" src="dragon-welcome.jpg" alt="រូបរបស់អង្គការធ្វើដោយ Dragon Calculator">
+    <header class="about-header">
+      <div>
+        <span class="eyebrow" data-i18n="aboutEyebrow">អំពីខ្ញុំ</span>
+        <h2 id="aboutTitle" data-i18n="aboutTitle">អំពីខ្ញុំ និងគោលបំណងនៃការបង្កើតគេហទំព័រនេះ</h2>
+      </div>
+      <button class="dialog-close" id="closeAbout" type="button" aria-label="បិទ" data-i18n-aria-label="close">×</button>
+    </header>
+    <div class="about-content">
+      <p>
+        <span data-i18n="aboutGreetingPrefix">សួស្តី! ខ្ញុំបាទឈ្មោះ</span>
+        <strong data-i18n="aboutGreetingName">វ៉ន ដារ៉ា (Vorn Dara)</strong>
+        <span data-i18n="aboutGreetingSuffix">។</span>
+      </p>
+      <p data-i18n="aboutParagraph1">ខ្ញុំមិនមែនជាអ្នកជំនាញផ្នែក IT ឬជាអ្នកអភិវឌ្ឍន៍គេហទំព័រអាជីពនោះទេ។ គេហទំព័រតូចមួយនេះ ត្រូវបានបង្កើតឡើងដោយផ្អែកលើចំណង់ចំណូលចិត្ត ការចង់ចេះចង់ដឹង និងបំណងប្រាថ្នាចង់ស្វែងយល់អ្វីថ្មីៗរបស់ខ្ញុំប៉ុណ្ណោះ។</p>
+      <p data-i18n="aboutParagraph2">ខ្ញុំជឿថា ការរៀនសូត្រមិនចាំបាច់ចាប់ផ្ដើមពីភាពជាអ្នកជំនាញនោះទេ ប៉ុន្តែអាចចាប់ផ្ដើមពីការចង់ដឹង ការហ៊ានសាកល្បង និងការមិនបោះបង់នៅពេលជួបបញ្ហា។</p>
+      <p data-i18n="aboutParagraph3">ខ្ញុំមិនខ្លាចក្នុងការចាប់ផ្ដើមពីចំណុចសូន្យនោះទេ ព្រោះខ្ញុំជឿថា អ្នកជំនាញគ្រប់រូបក៏ធ្លាប់ជាអ្នកចាប់ផ្ដើមដំបូងដូចគ្នា។ អ្វីដែលសំខាន់ គឺការបន្តរៀន បន្តអភិវឌ្ឍ និងធ្វើឱ្យខ្លួនឯងកាន់តែប្រសើរឡើងជារៀងរាល់ថ្ងៃ។</p>
+      <h3 data-i18n="aboutPurposeHeading">គោលបំណងនៃគេហទំព័រនេះ</h3>
+      <p data-i18n="aboutPurpose1">គេហទំព័រនេះមិនមែនបង្កើតឡើងដើម្បីបង្ហាញថាខ្ញុំចេះអ្វីៗគ្រប់យ៉ាងនោះទេ ប៉ុន្តែវាជាកន្លែងសម្រាប់សាកល្បង បង្កើត ស្វែងយល់ និងប្រមូលបទពិសោធន៍ថ្មីៗ។</p>
+      <p data-i18n="aboutPurpose2">ខ្ញុំមានបំណងប្រើប្រាស់ចំណេះដឹងដែលបានរៀន ដើម្បីបង្កើតឧបករណ៍តូចៗ កម្មវិធី និងគេហទំព័រផ្សេងៗ ដែលអាចជួយសម្រួលដល់ការងារ និងជីវិតប្រចាំថ្ងៃ។</p>
+      <p data-i18n="aboutPurpose3">ទោះបីជាគេហទំព័រនេះមិនទាន់ល្អឥតខ្ចោះក៏ដោយ ក៏វាជាស្នាដៃតូចមួយដែលកើតចេញពីការខិតខំប្រឹងប្រែង ការសាកល្បង និងការរៀនសូត្ររបស់ខ្ញុំផ្ទាល់។</p>
+      <h3 data-i18n="aboutJourneyHeading">ដំណើរនៃការរៀនសូត្រ (My Journey)</h3>
+      <p data-i18n="aboutJourney1">ខ្ញុំសង្ឃឹមថា នៅថ្ងៃអនាគត គេហទំព័រនេះនឹងក្លាយជាកន្លែងមួយដែលអាចបង្ហាញពីការរីកចម្រើនរបស់ខ្ញុំ តាមរយៈស្នាដៃថ្មីៗ និងបទពិសោធន៍ដែលខ្ញុំទទួលបាន។</p>
+      <p data-i18n="aboutJourney2">រាល់កំហុសគឺជាមេរៀន រាល់បញ្ហាគឺជាបទពិសោធន៍ ហើយរាល់ការចាប់ផ្ដើមថ្មី គឺជាឱកាសមួយសម្រាប់ការរីកចម្រើន។</p>
+      <h3 data-i18n="aboutBeliefsHeading">ពាក្យដែលខ្ញុំតែងតែជឿជាក់</h3>
+      <blockquote class="about-quote">
+        <p><strong data-i18n="aboutQuote">«កុំរង់ចាំរហូតដល់ខ្លួនឯងពូកែ ទើបចាប់ផ្ដើមធ្វើអ្វីមួយ។ ចូរហ៊ានចាប់ផ្ដើមពីអ្វីដែលអ្នកមាន ហើយរៀនឱ្យកាន់តែពូកែតាមរយៈអ្វីដែលអ្នកបានធ្វើ»។</strong></p>
+      </blockquote>
+      <p data-i18n="aboutBelief">ខ្ញុំជឿថា យើងមិនចាំបាច់ប្រកួតប្រជែងជាមួយអ្នកដទៃគ្រប់ពេលនោះទេ។ គ្រាន់តែធ្វើឱ្យខ្លួនឯងនៅថ្ងៃនេះ ប្រសើរជាងខ្លួនឯងកាលពីម្សិលមិញ ក៏ជាការរីកចម្រើនដ៏មានតម្លៃមួយដែរ។</p>
+      <p data-i18n="aboutThanks">ជាចុងក្រោយ ខ្ញុំសូមអរគុណយ៉ាងជ្រាលជ្រៅចំពោះអ្នកដែលបានចំណាយពេលចូលមកទស្សនា និងគាំទ្រស្នាដៃតូចមួយនេះ។ ការចូលទស្សនារបស់អ្នក គឺជាកម្លាំងចិត្តមួយដែលជំរុញឱ្យខ្ញុំបន្តរៀនសូត្រ និងបង្កើតអ្វីថ្មីៗបន្ថែមទៀត។</p>
+      <p class="about-thanks"><strong data-i18n="aboutThanksEmphasis">សូមអរគុណពីចិត្ត!</strong></p>
+      <p class="about-signature">
+        <span data-i18n="aboutSignatureClosing">ដោយក្តីគោរព និងអរគុណពីខ្ញុំបាទ</span>
+        <strong data-i18n="aboutSignatureName">វ៉ន ដារ៉ា (Vorn Dara)</strong>
+      </p>
+    </div>
+  </dialog>
+
+  <dialog class="about-dialog settings-dialog" id="settingsDialog" aria-labelledby="settingsTitle">
+    <header class="about-header">
+      <div>
+        <span class="eyebrow" data-i18n="settingsEyebrow">ការកំណត់</span>
+        <h2 id="settingsTitle" data-i18n="settingsTitle">ការកំណត់</h2>
+      </div>
+      <button class="dialog-close" id="closeSettings" type="button" aria-label="បិទ" data-i18n-aria-label="close">×</button>
+    </header>
+    <div class="settings-content">
+      <div class="settings-option">
+        <div class="settings-copy">
+          <strong data-i18n="themeSettingLabel">រូបរាង</strong>
+          <small data-i18n="themeSettingDescription">ប្តូររវាងរបៀបភ្លឺ និងរបៀបងងឹត</small>
+        </div>
+        <button class="theme-button" id="themeButton" type="button" aria-pressed="false">
+          <span class="theme-icon" id="themeIcon" aria-hidden="true">☾</span>
+          <span id="themeButtonLabel">របៀបងងឹត</span>
+        </button>
+      </div>
+      <div class="settings-option">
+        <div class="settings-copy">
+          <strong data-i18n="languageSettingLabel">ភាសា</strong>
+          <small data-i18n="languageSettingDescription">ជ្រើសរើសភាសាដែលប្រើក្នុងកម្មវិធី</small>
+        </div>
+        <div class="language-switch" role="group" aria-label="ជ្រើសរើសភាសា" data-i18n-aria-label="languageSelect">
+          <button class="language-button active" type="button" data-language="km" aria-pressed="true">ខ្មែរ</button>
+          <button class="language-button" type="button" data-language="en" aria-pressed="false">English</button>
+          <button class="language-button" type="button" data-language="zh" aria-pressed="false">中文</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="script.js?v=exp-year-title-2026-11" defer></script>
+</body>
+</html>
