@@ -24,8 +24,10 @@ const appsDescription = document.getElementById("appsDescription");
 const appPicker = document.getElementById("appPicker");
 const openWheelAppButton = document.getElementById("openWheelApp");
 const openStockAppButton = document.getElementById("openStockApp");
+const openLotteryAppButton = document.getElementById("openLotteryApp");
 const luckyWheelView = document.getElementById("luckyWheelView");
 const stockSupervisorView = document.getElementById("stockSupervisorView");
+const lotteryAppView = document.getElementById("lotteryAppView");
 const stockSupervisorOverview = document.getElementById("stockSupervisorOverview");
 const stockFeaturePicker = document.getElementById("stockFeaturePicker");
 const openIncomingExpButton = document.getElementById("openIncomingExp");
@@ -119,6 +121,14 @@ const translations = {
     appsDescription: "ជ្រើសរើសកម្មវិធីដែលអ្នកចង់ប្រើ",
     backToApps: "ត្រឡប់ទៅជម្រើសមុខងារ",
     backToStockFeatures: "ត្រឡប់ក្រោយ",
+    lotteryTitle: "ឆែកលេខឡូ",
+    lotteryDescription: "បញ្ចូលលេខឡូ ដើម្បីត្រួតពិនិត្យលទ្ធផល។ មុខងារនេះកំពុង Update ទិន្នន័យ។",
+    lotteryEyebrow: "មុខងារថ្មី",
+    lotteryStatus: "កំពុង Update",
+    lotteryNumberLabel: "លេខឡូ",
+    lotteryPlaceholder: "ឧ. 123456",
+    lotteryCheckButton: "ឆែកលទ្ធផល",
+    lotteryPending: "មុខងារនេះនឹងអាប់ដេតឆាប់ៗនេះ។",
     wheelEyebrow: "ហ្គេមសំណាង",
     wheelTitle: "កងបង្វិលសំណាង",
     wheelDescription: "បញ្ចូលឈ្មោះអ្នកចូលរួមរហូតដល់ 30 នាក់។ អ្នកឈ្នះនឹងត្រូវដកចេញពីកងបង្វិល។",
@@ -256,6 +266,14 @@ const translations = {
     appsDescription: "Choose an app to use.",
     backToApps: "Back to app choices",
     backToStockFeatures: "Go back",
+    lotteryTitle: "Check Lottery Number",
+    lotteryDescription: "Enter a lottery number to check the result. Data updates are in progress.",
+    lotteryEyebrow: "NEW APP",
+    lotteryStatus: "Updating",
+    lotteryNumberLabel: "Lottery number",
+    lotteryPlaceholder: "e.g. 123456",
+    lotteryCheckButton: "Check result",
+    lotteryPending: "This feature will be updated soon.",
     wheelEyebrow: "LUCKY GAME",
     wheelTitle: "Lucky Spin Wheel",
     wheelDescription: "Enter up to 30 participant names. Each winner is removed from the wheel.",
@@ -393,6 +411,14 @@ const translations = {
     appsDescription: "选择要使用的应用。",
     backToApps: "返回应用选项",
     backToStockFeatures: "返回",
+    lotteryTitle: "彩票号码查询",
+    lotteryDescription: "输入彩票号码以查询结果。数据正在更新。",
+    lotteryEyebrow: "新应用",
+    lotteryStatus: "正在更新",
+    lotteryNumberLabel: "彩票号码",
+    lotteryPlaceholder: "例如：123456",
+    lotteryCheckButton: "查询结果",
+    lotteryPending: "此功能即将更新。",
     wheelEyebrow: "幸运游戏",
     wheelTitle: "幸运转盘",
     wheelDescription: "最多输入 30 位参与者的姓名。每位获胜者都会从转盘中移除。",
@@ -516,6 +542,9 @@ function setLanguage(language) {
 
   document.querySelectorAll("[data-i18n]").forEach((element) => {
     element.textContent = translate(element.dataset.i18n);
+  });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
+    element.setAttribute("placeholder", translate(element.dataset.i18nPlaceholder));
   });
   document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
     element.setAttribute("aria-label", translate(element.dataset.i18nAriaLabel));
@@ -933,9 +962,11 @@ function showAppChoices() {
   animateEntrance(appPicker);
   luckyWheelView.hidden = true;
   stockSupervisorView.hidden = true;
+  lotteryAppView.hidden = true;
   showStockFeatureChoices();
   openWheelAppButton.setAttribute("aria-expanded", "false");
   openStockAppButton.setAttribute("aria-expanded", "false");
+  openLotteryAppButton.setAttribute("aria-expanded", "false");
 }
 
 function showAppView(view, selectedButton) {
@@ -944,9 +975,11 @@ function showAppView(view, selectedButton) {
   appPicker.hidden = true;
   luckyWheelView.hidden = view !== luckyWheelView;
   stockSupervisorView.hidden = view !== stockSupervisorView;
+  lotteryAppView.hidden = view !== lotteryAppView;
   animateEntrance(view);
   openWheelAppButton.setAttribute("aria-expanded", String(selectedButton === openWheelAppButton));
   openStockAppButton.setAttribute("aria-expanded", String(selectedButton === openStockAppButton));
+  openLotteryAppButton.setAttribute("aria-expanded", String(selectedButton === openLotteryAppButton));
 }
 
 function showStockFeatureChoices() {
@@ -1018,6 +1051,7 @@ openStockAppButton.addEventListener("click", () => {
   showStockFeatureChoices();
   showAppView(stockSupervisorView, openStockAppButton);
 });
+openLotteryAppButton.addEventListener("click", () => showAppView(lotteryAppView, openLotteryAppButton));
 openIncomingExpButton.addEventListener("click", () => showStockFeature(incomingExpView, openIncomingExpButton));
 document.querySelectorAll("[data-stock-back]").forEach((button) => {
   button.addEventListener("click", () => {
@@ -1027,10 +1061,23 @@ document.querySelectorAll("[data-stock-back]").forEach((button) => {
 });
 document.querySelectorAll("[data-app-back]").forEach((button) => {
   button.addEventListener("click", () => {
-    const selectedButton = button.closest("#stockSupervisorView") ? openStockAppButton : openWheelAppButton;
+    let selectedButton = openWheelAppButton;
+    if (button.closest("#stockSupervisorView")) selectedButton = openStockAppButton;
+    if (button.closest("#lotteryAppView")) selectedButton = openLotteryAppButton;
     showAppChoices();
     selectedButton.focus();
   });
+});
+
+const lotteryCheckForm = document.getElementById("lotteryCheckForm");
+const lotteryNumber = document.getElementById("lotteryNumber");
+
+lotteryNumber?.addEventListener("input", () => {
+  lotteryNumber.value = lotteryNumber.value.replace(/\D/g, "");
+});
+
+lotteryCheckForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
 });
 
 function formatExpDate(date) {

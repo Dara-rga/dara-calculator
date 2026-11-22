@@ -2092,6 +2092,88 @@ body {
   background: #263b57;
 }
 
+/* Lottery app */
+.lottery-choice-icon {
+  color: #b05d26;
+  background: #fff0df;
+  font-size: 1.45rem;
+}
+
+.lottery-check-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.lottery-check-form .field input {
+  width: 100%;
+  min-height: 56px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--ink);
+  background: var(--surface);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.lottery-result {
+  min-height: 72px;
+  margin-top: 16px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  color: var(--muted);
+  background: var(--canvas);
+  line-height: 1.6;
+}
+
+:root[data-theme="dark"] .lottery-choice-icon {
+  color: #ffc18a;
+  background: #4b3a2d;
+}
+
+:root[data-theme="dark"] .lottery-card {
+  border-color: #557692;
+  background: #26394a;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+}
+
+:root[data-theme="dark"] .lottery-card .app-card-header h3,
+:root[data-theme="dark"] .lottery-card .field,
+:root[data-theme="dark"] .lottery-card .field > span {
+  color: #edf5ff;
+}
+
+:root[data-theme="dark"] .lottery-card .app-card-header p,
+:root[data-theme="dark"] .lottery-card .lottery-result {
+  color: #bacbda;
+}
+
+:root[data-theme="dark"] .lottery-check-form .field input {
+  border: 2px solid #557692;
+  color: #ffffff;
+  background: #1d2b38;
+  -webkit-text-fill-color: #ffffff;
+}
+
+:root[data-theme="dark"] .lottery-result {
+  border-color: #557692;
+  background: #1d2b38;
+}
+
+@media (max-width: 520px) {
+  .lottery-check-form {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lottery-check-form .primary-button {
+    width: 100%;
+  }
+}
+
 /* Dark-mode stock supervisor container */
 :root[data-theme="dark"] .stock-card,
 :root[data-theme="dark"] .stock-supervisor-card,

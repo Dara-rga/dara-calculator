@@ -14,7 +14,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Dragon Calculator">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
-  <link rel="stylesheet" href="styles.css?v=dark-stock-supervisor-2026-11">
+  <link rel="stylesheet" href="styles.css?v=lottery-check-app-2026-11">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Dragon Calculator">
   <meta property="og:title" content="Dragon Calculator | កម្មវិធីគណនាតម្លៃ និងការលក់">
@@ -247,6 +247,14 @@
           </span>
           <span class="app-choice-arrow" aria-hidden="true">›</span>
         </button>
+        <button class="app-choice" id="openLotteryApp" type="button" aria-controls="lotteryAppView" aria-expanded="false">
+          <span class="app-choice-icon lottery-choice-icon" aria-hidden="true">#</span>
+          <span class="app-choice-copy">
+            <strong data-i18n="lotteryTitle">ឆែកលេខឡូ</strong>
+            <small data-i18n="lotteryDescription">បញ្ចូលលេខឡូ ដើម្បីត្រួតពិនិត្យលទ្ធផល។ មុខងារនេះកំពុង Update ទិន្នន័យ។</small>
+          </span>
+          <span class="app-choice-arrow" aria-hidden="true">›</span>
+        </button>
       </div>
 
       <div class="app-view" id="luckyWheelView" hidden>
@@ -285,6 +293,33 @@
             <h4 id="wheelWinnersHeading" data-i18n="wheelWinnersHeading">ឈ្មោះអ្នកឈ្នះ</h4>
             <ol id="wheelWinners"></ol>
           </section>
+        </section>
+      </div>
+
+      <div class="app-view" id="lotteryAppView" hidden>
+        <button class="app-back-button" type="button" data-app-back>
+          <span aria-hidden="true">←</span>
+          <span data-i18n="backToApps">ត្រឡប់ទៅជម្រើសមុខងារ</span>
+        </button>
+        <section class="app-card lottery-card" aria-labelledby="lotteryTitle">
+          <header class="app-card-header">
+            <div>
+              <span class="eyebrow" data-i18n="lotteryEyebrow">មុខងារ New</span>
+              <h3 id="lotteryTitle" tabindex="-1" data-i18n="lotteryTitle">ឆែកលេខឡូ</h3>
+              <p data-i18n="lotteryDescription">បញ្ចូលលេខឡូ ដើម្បីត្រួតពិនិត្យលទ្ធផល។ មុខងារនេះកំពុង Update ទិន្នន័យ។</p>
+            </div>
+            <span class="app-status" data-i18n="lotteryStatus">កំពុង Update</span>
+          </header>
+          <form class="lottery-check-form" id="lotteryCheckForm">
+            <label class="field" for="lotteryNumber">
+              <span data-i18n="lotteryNumberLabel">លេខឡូ</span>
+              <input id="lotteryNumber" type="text" maxlength="10" inputmode="numeric" pattern="[0-9]*" autocomplete="off" placeholder="ឧ. 123456" data-i18n-placeholder="lotteryPlaceholder">
+            </label>
+            <button class="primary-button" id="lotteryCheckButton" type="submit" data-i18n="lotteryCheckButton" disabled>ឆែកលទ្ធផល</button>
+          </form>
+          <div class="lottery-result" id="lotteryResult" aria-live="polite">
+            <span data-i18n="lotteryPending">មុខងារនេះនឹងអាប់ដេតឆាប់ៗនេះ។</span>
+          </div>
         </section>
       </div>
 
