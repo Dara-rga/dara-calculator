@@ -1878,3 +1878,79 @@ body {
   accent-color: #72b8e7;
   filter: brightness(1.35);
 }
+
+/* Phone / EXP dark-mode readability */
+:root[data-theme="dark"] #expPanel .section-description,
+:root[data-theme="dark"] #monthlyExpView .app-card-header p {
+  color: #d2deea;
+  opacity: 1;
+}
+
+:root[data-theme="dark"] #expPanel .field,
+:root[data-theme="dark"] #expPanel .field > span,
+:root[data-theme="dark"] #monthlyExpView .field,
+:root[data-theme="dark"] #monthlyExpView .field > span {
+  color: #edf5ff;
+}
+
+:root[data-theme="dark"] #expPanel .exp-date-fields select,
+:root[data-theme="dark"] #expPanel .exp-date-fields input,
+:root[data-theme="dark"] #monthlyExpView .exp-date-fields select,
+:root[data-theme="dark"] #monthlyExpView .exp-date-fields input,
+:root[data-theme="dark"] #expPanel .exp-duration-fields input,
+:root[data-theme="dark"] #monthlyExpView .exp-duration-fields input {
+  border: 1px solid #557692;
+  color: #ffffff;
+  background: #26394a;
+  opacity: 1;
+  -webkit-text-fill-color: #ffffff;
+}
+
+:root[data-theme="dark"] #expPanel .exp-result small,
+:root[data-theme="dark"] #monthlyExpView .exp-result small {
+  color: #bacbda;
+}
+
+@media (max-width: 760px) {
+  #expPanel,
+  #monthlyExpView {
+    overflow: hidden;
+  }
+
+  #expPanel .section-description {
+    min-height: 48px;
+    margin-bottom: 18px;
+    font-size: 0.96rem;
+  }
+
+  #expDirectForm.exp-calculator,
+  #expForm.exp-calculator {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  #expPanel .exp-date-fields,
+  #monthlyExpView .exp-date-fields {
+    grid-template-columns: 62px minmax(112px, 1.25fr) 76px;
+    gap: 6px;
+  }
+
+  #expPanel .exp-date-fields select,
+  #expPanel .exp-date-fields input,
+  #monthlyExpView .exp-date-fields select,
+  #monthlyExpView .exp-date-fields input,
+  #expPanel .exp-duration-fields input,
+  #monthlyExpView .exp-duration-fields input {
+    min-height: 58px;
+    font-size: 16px;
+  }
+
+  #expPanel .exp-duration-fields,
+  #monthlyExpView .exp-duration-fields {
+    min-width: 0;
+  }
+
+  #expPanel .exp-calculate-button,
+  #monthlyExpView .exp-calculate-button {
+    min-width: 132px;
+  }
+}
