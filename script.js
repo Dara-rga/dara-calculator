@@ -153,7 +153,7 @@ const translations = {
     wheelCanvasLabel: "កងបង្វិលសំណាង មានឈ្មោះ {count} នាក់",
     wheelStorageError: "មិនអាចអានទិន្នន័យចាស់បានទេ។ សូមរក្សាទុកបញ្ជីថ្មី ឬចាប់ផ្ដើមជុំថ្មី។",
     stockSupervisorEyebrow: "កម្មវិធីថ្មី",
-    stockSupervisorTitle: "ស្វែងយល់អំពីថ្ងៃផុតកំណត់ EXP",
+    stockSupervisorTitle: "លក្ខណះអំពីថ្ងៃផុតកំណត់ EXP",
     stockSupervisorDescription: "មុខងារនេះកំពុងរៀបចំ។ សូមរង់ចាំការអាប់ដេតបន្ទាប់។",
     monthlyExpTitle: "គណនាថ្ងៃផុតកំណត់ EXP",
     expReadyStatus: "ត្រៀមប្រើ",
