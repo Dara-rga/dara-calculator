@@ -8,6 +8,7 @@ const themeButtonLabel = document.getElementById("themeButtonLabel");
 const themeIcon = document.getElementById("themeIcon");
 const themeColor = document.getElementById("themeColor");
 const languageButtons = document.querySelectorAll(".language-button");
+const dashboardSearch = document.getElementById("dashboardSearch");
 const discountTab = document.getElementById("discountTab");
 const targetTab = document.getElementById("targetTab");
 const profitTab = document.getElementById("profitTab");
@@ -1005,6 +1006,12 @@ spinWheelButton.addEventListener("click", spinWheel);
 resetWheelButton.addEventListener("click", resetWheel);
 languageButtons.forEach((button) => {
   button.addEventListener("click", () => setLanguage(button.dataset.language));
+});
+dashboardSearch?.addEventListener("input", () => {
+  const query = dashboardSearch.value.trim().toLocaleLowerCase();
+  document.querySelectorAll(".tool-tab").forEach((tab) => {
+    tab.hidden = Boolean(query) && !tab.textContent.toLocaleLowerCase().includes(query);
+  });
 });
 themeButton.addEventListener("click", () => {
   const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
