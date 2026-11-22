@@ -1477,3 +1477,243 @@ body {
     border-radius: 22px;
   }
 }
+
+/* High readability improvements for desktop and mobile */
+body {
+  color: #26384b;
+}
+
+.brand-copy strong {
+  color: #17324d;
+  font-size: 1.08rem;
+  font-weight: 750;
+}
+
+.brand-copy small {
+  color: #60758a;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.tool-tab {
+  color: #506579;
+  font-size: 0.94rem;
+  font-weight: 700;
+}
+
+.tool-tab.active {
+  color: #155d95;
+}
+
+.tab-copy small,
+.tool-tab.active .tab-copy small {
+  color: #6b8296;
+  font-size: 0.72rem;
+  opacity: 1;
+}
+
+.tool-panel h2 {
+  color: #1d3550;
+  font-weight: 750;
+}
+
+.section-description {
+  color: #5f7487;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.field,
+.discount-mode legend {
+  color: #40596f;
+  font-size: 0.92rem;
+  font-weight: 750;
+}
+
+.field input,
+.exp-date-fields select,
+.exp-date-fields input,
+.field textarea {
+  min-height: 56px;
+  color: #19364f;
+  background: #ffffff;
+  font-size: 1.02rem;
+  font-weight: 700;
+}
+
+.result-label,
+.result-detail,
+.calculation-step {
+  color: #486278;
+  font-size: 0.92rem;
+  font-weight: 650;
+}
+
+.result-detail,
+.calculation-step code {
+  line-height: 1.75;
+}
+
+.app-choice-copy strong,
+.stock-feature-title {
+  color: #253e55;
+  font-size: 1.02rem;
+  font-weight: 750;
+}
+
+.app-choice-copy small {
+  color: #60778a;
+  font-size: 0.86rem;
+  line-height: 1.7;
+}
+
+.primary-button,
+.secondary-button,
+.about-button,
+.theme-button,
+.app-back-button {
+  font-weight: 750;
+}
+
+@media (min-width: 761px) {
+  .calculator {
+    min-height: 100vh;
+  }
+
+  .tool-tabs {
+    gap: 7px;
+  }
+
+  .tool-tab {
+    min-height: 62px;
+  }
+
+  .tool-panel {
+    max-width: 1180px;
+  }
+
+  .tool-form,
+  .exp-calculator {
+    gap: 20px;
+  }
+
+  .result-card {
+    min-height: 220px;
+  }
+}
+
+@media (max-width: 760px) {
+  body {
+    padding: 0;
+  }
+
+  .calculator {
+    width: 100%;
+  }
+
+  .brand {
+    align-items: center;
+    min-height: 68px;
+  }
+
+  .brand-copy strong {
+    font-size: 0.9rem;
+  }
+
+  .brand-copy small {
+    font-size: 0.74rem;
+  }
+
+  .dashboard-search {
+    min-height: 44px;
+  }
+
+  .tool-tabs {
+    gap: 8px;
+  }
+
+  .tool-tab {
+    min-height: 68px;
+    font-size: 0.86rem;
+  }
+
+  .tab-icon {
+    flex-basis: 34px;
+    width: 34px;
+    height: 34px;
+  }
+
+  .tool-panel {
+    padding: 22px 16px;
+  }
+
+  .tool-form,
+  .exp-calculator,
+  .discount-mode {
+    gap: 12px;
+  }
+
+  .field input,
+  .exp-date-fields select,
+  .exp-date-fields input {
+    min-height: 54px;
+  }
+
+  .exp-date-fields {
+    grid-template-columns: 70px minmax(118px, 1fr) 88px;
+  }
+
+  .exp-date-fields select,
+  .exp-date-fields input {
+    padding: 0 8px;
+    font-size: 0.92rem;
+  }
+
+  .result-card,
+  .exp-result {
+    padding: 18px 16px;
+  }
+
+  .result-value,
+  .exp-result strong {
+    font-size: clamp(1.8rem, 10vw, 2.4rem);
+  }
+
+  .app-choice {
+    min-height: 118px;
+  }
+
+  .primary-button,
+  .secondary-button,
+  .about-button,
+  .theme-button {
+    min-height: 48px;
+  }
+}
+
+@media (max-width: 390px) {
+  .brand-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .dashboard-search {
+    margin-top: 8px;
+  }
+
+  .tool-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tool-tab {
+    padding: 8px 6px;
+  }
+
+  .tab-copy > span {
+    font-size: 0.78rem;
+  }
+
+  .exp-date-fields {
+    grid-template-columns: 64px minmax(112px, 1fr) 82px;
+  }
+}

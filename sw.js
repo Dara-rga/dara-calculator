@@ -1,4 +1,4 @@
-const CACHE_NAME = "dragon-calculator-v9";
+const CACHE_NAME = "dragon-calculator-v10";
 const APP_SHELL = [
   "./",
   "./index.html",
