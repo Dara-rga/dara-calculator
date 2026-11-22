@@ -1170,7 +1170,7 @@ body {
   .stock-feature-grid { grid-template-columns: minmax(0, 1fr); gap: 10px; }
   .stock-feature { min-height: 0; padding: 16px; }
   .exp-calculator { grid-template-columns: 1fr; }
-  .exp-date-fields { grid-template-columns: 82px minmax(130px, 1fr) 96px; }
+  .exp-date-fields {   grid-template-columns: 82px minmax(130px, 1fr) 96px; }
 }
 
 /* Modern dashboard surface */
@@ -1483,6 +1483,49 @@ body {
   color: #26384b;
 }
 
+#expPanel {
+  width: 100%;
+  max-width: none;
+}
+
+#expDirectForm,
+#expForm {
+  width: 100%;
+  max-width: none;
+}
+
+#expDirectForm.exp-calculator,
+#expForm.exp-calculator {
+  grid-template-columns: minmax(300px, 1.35fr) minmax(280px, 1fr);
+  align-items: end;
+}
+
+#expDirectForm .exp-duration-fields,
+#expForm .exp-duration-fields {
+  width: 100%;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+#expDirectForm .exp-calculate-button,
+#expForm .exp-calculate-button {
+  width: 128px;
+  justify-self: end;
+}
+
+#expPanel .exp-result,
+#monthlyExpView .exp-result {
+  width: 100%;
+  min-height: 188px;
+  align-content: center;
+  box-sizing: border-box;
+}
+
+#expPanel .exp-date-fields,
+#monthlyExpView .exp-date-fields {
+  width: 100%;
+  grid-template-columns: minmax(72px, 0.7fr) minmax(150px, 1.5fr) minmax(100px, 1fr);
+}
+
 .brand-copy strong {
   color: #17324d;
   font-size: 1.08rem;
@@ -1589,7 +1632,7 @@ body {
   }
 
   .tool-panel {
-    max-width: 1180px;
+    max-width: none;
   }
 
   .tool-form,
