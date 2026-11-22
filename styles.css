@@ -512,6 +512,48 @@ button { -webkit-tap-highlight-color: transparent; }
 .about-content .about-thanks { color: var(--navy); font-size: 1.03rem; }
 .about-content .about-signature { margin: 22px 0 0; padding-top: 16px; border-top: 1px solid var(--line); color: var(--navy); }
 .about-content .about-signature strong { display: block; margin-top: 7px; }
+.about-contact {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+.about-contact h3 {
+  margin: 0 0 12px;
+}
+.contact-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.contact-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 48px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 750;
+  text-decoration: none;
+  transition: transform 150ms ease, filter 150ms ease;
+}
+.contact-link:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+}
+.telegram-link {
+  background: #2aabee;
+}
+.facebook-link {
+  background: #1877f2;
+}
+
+@media (max-width: 520px) {
+  .contact-links {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
 
 .settings-content { display: grid; gap: 12px; padding: 22px 26px 26px; }
 .settings-option {
