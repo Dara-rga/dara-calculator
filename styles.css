@@ -2091,3 +2091,61 @@ body {
   color: #a8c7fa;
   background: #263b57;
 }
+
+/* Full dark-mode Lucky Wheel surface */
+:root[data-theme="dark"] .lucky-wheel-card {
+  border-color: #557692;
+  background: #26394a;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+}
+
+:root[data-theme="dark"] .lucky-wheel-card .app-card-header h3,
+:root[data-theme="dark"] .lucky-wheel-card .field,
+:root[data-theme="dark"] .lucky-wheel-card .field > span,
+:root[data-theme="dark"] .lucky-wheel-card .wheel-help,
+:root[data-theme="dark"] .lucky-wheel-card .wheel-remaining,
+:root[data-theme="dark"] .lucky-wheel-card .winner-history h4 {
+  color: #edf5ff;
+}
+
+:root[data-theme="dark"] .lucky-wheel-card .app-card-header p {
+  color: #bacbda;
+}
+
+:root[data-theme="dark"] .lucky-wheel-card .field textarea {
+  border: 2px solid #557692;
+  color: #ffffff;
+  background: #1d2b38;
+  -webkit-text-fill-color: #ffffff;
+}
+
+:root[data-theme="dark"] .lucky-wheel-card .secondary-button {
+  border-color: #557692;
+  color: #edf5ff;
+  background: #26394a;
+}
+
+:root[data-theme="dark"] .lucky-wheel-card .secondary-button:hover:not(:disabled) {
+  border-color: #72bdf2;
+  background: #2d4053;
+}
+
+:root[data-theme="dark"] .lucky-wheel-card .wheel-status {
+  color: #8ed0ff;
+}
+
+:root[data-theme="dark"] .lucky-wheel-card .wheel-frame {
+  border-color: #557692;
+  background: #1d2b38;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.32);
+}
+
+:root[data-theme="dark"] .lucky-wheel-card .winner-history {
+  border-color: #557692;
+}
+
+:root[data-theme="dark"] .lucky-wheel-card .winner-history li {
+  border-color: #557692;
+  color: #edf5ff;
+  background: #1d2b38;
+}
