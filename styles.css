@@ -1760,3 +1760,120 @@ body {
     grid-template-columns: 64px minmax(112px, 1fr) 82px;
   }
 }
+
+/* Keep one fixed layout on every screen size: no responsive form rearrangement. */
+html {
+  min-width: 1120px;
+  overflow-x: auto;
+}
+
+body {
+  min-width: 1120px;
+  padding: 0;
+  overflow-x: auto;
+}
+
+.calculator {
+  width: 1120px;
+  max-width: 1120px;
+  min-width: 1120px;
+  grid-template-columns: 238px 882px;
+  grid-template-rows: 84px minmax(580px, 1fr) auto;
+  margin: 0;
+  padding: 0 22px 22px 0;
+}
+
+.brand {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  flex-wrap: nowrap;
+  min-height: 84px;
+  padding: 14px 24px;
+}
+
+.dashboard-search {
+  order: 0;
+  width: 520px;
+  margin: 0 auto;
+}
+
+.brand-actions {
+  width: auto;
+  justify-content: flex-start;
+}
+
+.function-toolbar {
+  grid-column: 1;
+  grid-row: 2 / 4;
+  padding: 24px 12px 24px 18px;
+}
+
+.tool-tabs {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 8px;
+}
+
+.tool-tab {
+  flex-direction: row;
+  justify-content: flex-start;
+  min-height: 62px;
+  padding: 10px 16px;
+  border-radius: 14px;
+  text-align: left;
+}
+
+.tab-icon {
+  flex-basis: 38px;
+  width: 38px;
+  height: 38px;
+}
+
+.tab-copy,
+.tab-copy > span {
+  justify-items: start;
+  font-size: 0.94rem;
+  text-align: left;
+}
+
+.tool-panel {
+  grid-column: 2;
+  grid-row: 2;
+  width: 100%;
+  max-width: none;
+  min-height: 580px;
+  margin: 22px 0 0;
+  padding: clamp(26px, 3.5vw, 42px);
+  border-radius: 26px;
+}
+
+.tool-form,
+.exp-calculator {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.exp-duration-fields {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.exp-date-fields {
+  grid-template-columns: 92px minmax(140px, 1fr) 110px;
+  gap: 8px;
+}
+
+.discount-mode {
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.app-picker,
+.stock-feature-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.site-footer {
+  grid-column: 2;
+  grid-row: 3;
+  flex-direction: row;
+}
