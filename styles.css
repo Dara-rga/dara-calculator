@@ -2092,6 +2092,25 @@ body {
   background: #263b57;
 }
 
+/* Dark-mode stock supervisor container */
+:root[data-theme="dark"] .stock-card,
+:root[data-theme="dark"] .stock-supervisor-card,
+:root[data-theme="dark"] #stockSupervisorView .app-card,
+:root[data-theme="dark"] #stockSupervisorOverview {
+  border-color: #557692;
+  background: #26394a;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+}
+
+:root[data-theme="dark"] #stockSupervisorView .app-card-header h3,
+:root[data-theme="dark"] #stockSupervisorOverview .eyebrow {
+  color: #edf5ff;
+}
+
+:root[data-theme="dark"] #stockSupervisorView .app-card-header p {
+  color: #bacbda;
+}
+
 /* Full dark-mode Lucky Wheel surface */
 :root[data-theme="dark"] .lucky-wheel-card {
   border-color: #557692;
